@@ -23,5 +23,7 @@ namespace SIRH.Data
         public DbSet<SIRH.Models.Currency> Currency { get; set; }
 
         public DbSet<SIRH.Models.Experience> Experience { get; set; }
+
+        public DbSet<SIRH.Models.JobOffer> JobOffer { get; set; }
     }
 }

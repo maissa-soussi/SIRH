@@ -30,7 +30,7 @@ namespace SIRH.Controllers
             {
                 ce.Experience = await _context.Experience.FindAsync(ce.ExperienceId);
                 ce.Domain = await _context.Domain.FindAsync(ce.DomainId);
-                //ce.Candidate = await _context.Candidate.FindAsync(ce.CandidateId);
+                ce.Candidate = await _context.Candidate.FindAsync(ce.CandidateId);
             }
             return candidateExperiences;
         }
@@ -42,7 +42,7 @@ namespace SIRH.Controllers
             var candidateExperience = await _context.CandidateExperience.FindAsync(id);
             candidateExperience.Experience = await _context.Experience.FindAsync(candidateExperience.ExperienceId);
             candidateExperience.Domain = await _context.Domain.FindAsync(candidateExperience.DomainId);
-            //candidateExperience.Candidate = await _context.Candidate.FindAsync(candidateExperience.CandidateId);
+            candidateExperience.Candidate = await _context.Candidate.FindAsync(candidateExperience.CandidateId);
 
             if (candidateExperience == null)
             {
@@ -92,7 +92,7 @@ namespace SIRH.Controllers
         {
             candidateExperience.Experience = await _context.Experience.FindAsync(candidateExperience.ExperienceId);
             candidateExperience.Domain = await _context.Domain.FindAsync(candidateExperience.DomainId);
-            //candidateExperience.Candidate = await _context.Candidate.FindAsync(candidateExperience.CandidateId);
+            candidateExperience.Candidate = await _context.Candidate.FindAsync(candidateExperience.CandidateId);
             _context.CandidateExperience.Add(candidateExperience);
             await _context.SaveChangesAsync();
 

@@ -212,7 +212,8 @@ namespace SIRH.Migrations
 
                     b.Property<string>("CandidatureDate")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
 
                     b.Property<string>("CoverLetterPath")
                         .IsRequired()
@@ -220,11 +221,10 @@ namespace SIRH.Migrations
                         .HasMaxLength(255);
 
                     b.Property<string>("JobInterviewDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
 
                     b.Property<int?>("JobOfferId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -620,9 +620,7 @@ namespace SIRH.Migrations
 
                     b.HasOne("SIRH.Models.JobOffer", "JobOffer")
                         .WithMany()
-                        .HasForeignKey("JobOfferId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("JobOfferId");
                 });
 
             modelBuilder.Entity("SIRH.Models.JobOffer", b =>

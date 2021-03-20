@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,5 +22,13 @@ namespace SIRH.Models
         [Required]
         [StringLength(10)]
         public string EndDate { get; set; }
+        [Required]
+        [ForeignKey("Experience")]
+        public int ExperienceId { get; set; }
+        public virtual Experience Experience { get; set; }
+        [Required]
+        [ForeignKey("Domain")]
+        public int DomainId { get; set; }
+        public virtual Domain Domain { get; set; }
     }
 }

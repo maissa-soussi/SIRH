@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -40,11 +41,17 @@ namespace SIRH.Models
         [Required]
         [StringLength(8)]
         [Phone]
-        public int Phone { get; set; }
+        public string Phone { get; set; }
 
         [Required]
         [StringLength(10)]
         
         public string BirthdayDate { get; set; }
+
+        [Required]
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
+
     }
 }

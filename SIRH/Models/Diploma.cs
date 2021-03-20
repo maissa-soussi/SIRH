@@ -9,8 +9,7 @@ namespace SIRH.Models
 {
     public class Diploma
     {
-        [Key]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(100)]

@@ -10,10 +10,10 @@ namespace SIRH.Models
     {
         public int Id { get; set; }
         [Required]
-        public DateTime JobInterviewDate { get; set; }
+        public String JobInterviewDate { get; set; }
 
         [Required]
-        public DateTime CandidatureDate { get; set; }
+        public String CandidatureDate { get; set; }
 
     }
 }

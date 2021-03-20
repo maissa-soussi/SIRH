@@ -29,7 +29,7 @@ namespace SIRH.Controllers
             foreach (JobOffer jo in jobOffers)
             {
                 jo.Country = await _context.Country.FindAsync(jo.CountryId);
-                //jo.Diploma = await _context.Diploma.FindAsync(jo.DiplomaId);
+                jo.Diploma = await _context.Diploma.FindAsync(jo.DiplomaId);
                 jo.Experience = await _context.Experience.FindAsync(jo.ExperienceId);
                 jo.ContratType = await _context.ContratType.FindAsync(jo.ContratTypeId);
                 jo.Currency = await _context.Currency.FindAsync(jo.CurrencyId);
@@ -43,7 +43,7 @@ namespace SIRH.Controllers
         {
             var jobOffer = await _context.JobOffer.FindAsync(id);
             jobOffer.Country = await _context.Country.FindAsync(jobOffer.CountryId);
-            //jobOffer.Diploma = await _context.Diploma.FindAsync(jobOffer.DiplomaId);
+            jobOffer.Diploma = await _context.Diploma.FindAsync(jobOffer.DiplomaId);
             jobOffer.Experience = await _context.Experience.FindAsync(jobOffer.ExperienceId);
             jobOffer.ContratType = await _context.ContratType.FindAsync(jobOffer.ContratTypeId);
             jobOffer.Currency = await _context.Currency.FindAsync(jobOffer.CurrencyId);
@@ -95,7 +95,7 @@ namespace SIRH.Controllers
         public async Task<ActionResult<JobOffer>> PostJobOffer(JobOffer jobOffer)
         {
             jobOffer.Country = await _context.Country.FindAsync(jobOffer.CountryId);
-            //jobOffer.Diploma = await _context.Diploma.FindAsync(jobOffer.DiplomaId);
+            jobOffer.Diploma = await _context.Diploma.FindAsync(jobOffer.DiplomaId);
             jobOffer.Experience = await _context.Experience.FindAsync(jobOffer.ExperienceId);
             jobOffer.ContratType = await _context.ContratType.FindAsync(jobOffer.ContratTypeId);
             jobOffer.Currency = await _context.Currency.FindAsync(jobOffer.CurrencyId);

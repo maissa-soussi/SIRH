@@ -155,6 +155,68 @@ namespace SIRH.Migrations
                     b.ToTable("Experience");
                 });
 
+            modelBuilder.Entity("SIRH.Models.JobOffer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ContratTypeId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CountryId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CurrencyId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("DiplomaId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ExperienceId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ExpirationDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
+
+                    b.Property<int>("MaxSalary")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MinSalary")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PublicationDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
+
+                    b.Property<string>("Reference")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContratTypeId");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("CurrencyId");
+
+                    b.HasIndex("DiplomaId");
+
+                    b.HasIndex("ExperienceId");
+
+                    b.ToTable("JobOffer");
+                });
+
             modelBuilder.Entity("SIRH.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -204,6 +266,35 @@ namespace SIRH.Migrations
                         .HasForeignKey("DomainId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("SIRH.Models.JobOffer", b =>
+                {
+                    b.HasOne("SIRH.Models.ContratType", "ContratType")
+                        .WithMany()
+                        .HasForeignKey("ContratTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SIRH.Models.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SIRH.Models.Currency", "Currency")
+                        .WithMany()
+                        .HasForeignKey("CurrencyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SIRH.Models.Diploma", "Diploma")
+                        .WithMany()
+                        .HasForeignKey("DiplomaId");
+
+                    b.HasOne("SIRH.Models.Experience", "Experience")
+                        .WithMany()
+                        .HasForeignKey("ExperienceId");
                 });
 #pragma warning restore 612, 618
         }

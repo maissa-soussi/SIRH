@@ -24,11 +24,11 @@ namespace SIRH.Models
         public string EndDate { get; set; }
         [Required]
         [ForeignKey("Experience")]
-        public int ExperienceId { get; set; }
+        public int? ExperienceId { get; set; }
         public virtual Experience Experience { get; set; }
         [Required]
         [ForeignKey("Domain")]
-        public int DomainId { get; set; }
+        public int? DomainId { get; set; }
         public virtual Domain Domain { get; set; }
     }
 }

@@ -13,22 +13,22 @@ namespace SIRH.Models
         public string Reference { get; set; }
         [Required]
         [ForeignKey("Country")]
-        public int CountryId { get; set; }
+        public int? CountryId { get; set; }
         public virtual Country Country { get; set; }
         [ForeignKey("Diploma")]
-        public int DiplomaId { get; set; }
+        public int? DiplomaId { get; set; }
         public virtual Diploma Diploma { get; set; }
         [ForeignKey("Experience")]
-        public int ExperienceId { get; set; }
+        public int? ExperienceId { get; set; }
         public virtual Experience Experience { get; set; }
         [Required]
         [ForeignKey("ContratType")]
-        public int ContratTypeId { get; set; }
+        public int? ContratTypeId { get; set; }
         public virtual ContratType ContratType { get; set; }
         public string Description { get; set; }
         [Required]
         [ForeignKey("Currency")]
-        public int CurrencyId { get; set; }
+        public int? CurrencyId { get; set; }
         public virtual Currency Currency { get; set; }
         [Required]
         public int MinSalary { get; set; }

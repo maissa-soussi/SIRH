@@ -25,7 +25,7 @@ namespace SIRH.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CandidateDiploma>>> GetCandidateDiploma()
         {
-            List<CandidateDiploma> listes= await _context.CandidateDiploma.ToListAsync();
+            List<CandidateDiploma> listes = await _context.CandidateDiploma.ToListAsync();
             foreach (CandidateDiploma element in listes)
             {
                 element.Diploma = await _context.Diploma.FindAsync(element.DiplomaId);
@@ -45,7 +45,7 @@ namespace SIRH.Controllers
             {
                 return NotFound();
             }
-            candidateDiploma.Diploma= await _context.Diploma.FindAsync(candidateDiploma.DiplomaId);
+            candidateDiploma.Diploma = await _context.Diploma.FindAsync(candidateDiploma.DiplomaId);
             candidateDiploma.Domain = await _context.Domain.FindAsync(candidateDiploma.DomainId);
             return candidateDiploma;
         }

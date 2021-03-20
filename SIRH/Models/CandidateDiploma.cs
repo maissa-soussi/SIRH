@@ -19,12 +19,12 @@ namespace SIRH.Models
 		public string University { get; set; }
 		[Required]
 		[ForeignKey("Domain")]
-		public int DomainId { get; set; }
+		public int? DomainId { get; set; }
 		public virtual Domain Domain { get; set; }
 
 		[Required]
 		[ForeignKey("Diploma")]
-		public int DiplomaId { get; set; }
+		public int? DiplomaId { get; set; }
 		public virtual Diploma Diploma { get; set; }
 	}
 }

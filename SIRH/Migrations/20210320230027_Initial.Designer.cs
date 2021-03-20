@@ -10,8 +10,8 @@ using SIRH.Data;
 namespace SIRH.Migrations
 {
     [DbContext(typeof(SIRHContext))]
-    [Migration("20210320204926_DrivingLicence Migration")]
-    partial class DrivingLicenceMigration
+    [Migration("20210320230027_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,10 +38,23 @@ namespace SIRH.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
+                    b.Property<int?>("CountryId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CvPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
                     b.Property<string>("Gender")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
+
+                    b.Property<int?>("OtherId")
+                        .IsRequired()
+                        .HasColumnType("int");
 
                     b.Property<string>("Phone")
                         .IsRequired()
@@ -64,6 +77,10 @@ namespace SIRH.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("OtherId");
 
                     b.HasIndex("UserId");
 
@@ -152,6 +169,73 @@ namespace SIRH.Migrations
                     b.HasIndex("ExperienceId");
 
                     b.ToTable("CandidateExperience");
+                });
+
+            modelBuilder.Entity("SIRH.Models.CandidateLanguage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CandidateId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("LanguageId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("LanguageLevelId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CandidateId");
+
+                    b.HasIndex("LanguageId");
+
+                    b.HasIndex("LanguageLevelId");
+
+                    b.ToTable("CandidateLanguage");
+                });
+
+            modelBuilder.Entity("SIRH.Models.Candidature", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CandidateId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CandidatureDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
+
+                    b.Property<string>("CoverLetterPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("JobInterviewDate")
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
+
+                    b.Property<int?>("JobOfferId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CandidateId");
+
+                    b.HasIndex("JobOfferId");
+
+                    b.ToTable("Candidature");
                 });
 
             modelBuilder.Entity("SIRH.Models.ContratType", b =>
@@ -335,6 +419,85 @@ namespace SIRH.Migrations
                     b.ToTable("JobOffer");
                 });
 
+            modelBuilder.Entity("SIRH.Models.Language", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Language");
+                });
+
+            modelBuilder.Entity("SIRH.Models.LanguageLevel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LanguageLevel");
+                });
+
+            modelBuilder.Entity("SIRH.Models.Other", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("DrivingLicenceId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FacebookUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LinkedinUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SalaryWishId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DrivingLicenceId");
+
+                    b.HasIndex("SalaryWishId");
+
+                    b.ToTable("Other");
+                });
+
+            modelBuilder.Entity("SIRH.Models.SalaryWish", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Salary")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SalaryWish");
+                });
+
             modelBuilder.Entity("SIRH.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -373,6 +536,18 @@ namespace SIRH.Migrations
 
             modelBuilder.Entity("SIRH.Models.Candidate", b =>
                 {
+                    b.HasOne("SIRH.Models.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SIRH.Models.Other", "Other")
+                        .WithMany()
+                        .HasForeignKey("OtherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SIRH.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -416,6 +591,40 @@ namespace SIRH.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("SIRH.Models.CandidateLanguage", b =>
+                {
+                    b.HasOne("SIRH.Models.Candidate", "Candidate")
+                        .WithMany()
+                        .HasForeignKey("CandidateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SIRH.Models.Language", "Language")
+                        .WithMany()
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SIRH.Models.LanguageLevel", "LanguageLevel")
+                        .WithMany()
+                        .HasForeignKey("LanguageLevelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SIRH.Models.Candidature", b =>
+                {
+                    b.HasOne("SIRH.Models.Candidate", "Candidate")
+                        .WithMany()
+                        .HasForeignKey("CandidateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SIRH.Models.JobOffer", "JobOffer")
+                        .WithMany()
+                        .HasForeignKey("JobOfferId");
+                });
+
             modelBuilder.Entity("SIRH.Models.JobOffer", b =>
                 {
                     b.HasOne("SIRH.Models.ContratType", "ContratType")
@@ -443,6 +652,21 @@ namespace SIRH.Migrations
                     b.HasOne("SIRH.Models.Experience", "Experience")
                         .WithMany()
                         .HasForeignKey("ExperienceId");
+                });
+
+            modelBuilder.Entity("SIRH.Models.Other", b =>
+                {
+                    b.HasOne("SIRH.Models.DrivingLicence", "DrivingLicence")
+                        .WithMany()
+                        .HasForeignKey("DrivingLicenceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SIRH.Models.SalaryWish", "SalaryWish")
+                        .WithMany()
+                        .HasForeignKey("SalaryWishId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -33,7 +33,8 @@ namespace SIRH.Controllers
                 jo.User = await _context.User.FindAsync(jo.UserId);
                 jo.Country = await _context.Country.FindAsync(jo.CountryId);
                 jo.Other = await _context.Other.FindAsync(jo.OtherId);
-
+                jo.Other.SalaryWish = await _context.SalaryWish.FindAsync(jo.Other.SalaryWishId);
+                jo.Other.DrivingLicence = await _context.DrivingLicence.FindAsync(jo.Other.DrivingLicenceId);
             }
             return candidates;
         }
@@ -46,6 +47,8 @@ namespace SIRH.Controllers
             candidate.User = await _context.User.FindAsync(candidate.UserId);
             candidate.Country = await _context.Country.FindAsync(candidate.CountryId);
             candidate.Other = await _context.Other.FindAsync(candidate.OtherId);
+            candidate.Other.SalaryWish = await _context.SalaryWish.FindAsync(candidate.Other.SalaryWishId);
+            candidate.Other.DrivingLicence = await _context.DrivingLicence.FindAsync(candidate.Other.DrivingLicenceId);
 
             if (candidate == null)
             {

@@ -10,8 +10,8 @@ using SIRH.Data;
 namespace SIRH.Migrations
 {
     [DbContext(typeof(SIRHContext))]
-    [Migration("20210320220156_Candidate-and-CandidateLanguage-Migration")]
-    partial class CandidateandCandidateLanguageMigration
+    [Migration("20210324195138_intial")]
+    partial class intial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -94,6 +94,10 @@ namespace SIRH.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CandidateId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
                     b.Property<string>("Date")
                         .IsRequired()
                         .HasColumnType("nvarchar(10)")
@@ -113,6 +117,8 @@ namespace SIRH.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CandidateId");
 
                     b.HasIndex("DiplomaId");
 
@@ -199,6 +205,43 @@ namespace SIRH.Migrations
                     b.HasIndex("LanguageLevelId");
 
                     b.ToTable("CandidateLanguage");
+                });
+
+            modelBuilder.Entity("SIRH.Models.Candidature", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CandidateId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CandidatureDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
+
+                    b.Property<string>("CoverLetterPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("JobInterviewDate")
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
+
+                    b.Property<int?>("JobOfferId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CandidateId");
+
+                    b.HasIndex("JobOfferId");
+
+                    b.ToTable("Candidature");
                 });
 
             modelBuilder.Entity("SIRH.Models.ContratType", b =>
@@ -520,6 +563,12 @@ namespace SIRH.Migrations
 
             modelBuilder.Entity("SIRH.Models.CandidateDiploma", b =>
                 {
+                    b.HasOne("SIRH.Models.Candidate", "Candidate")
+                        .WithMany()
+                        .HasForeignKey("CandidateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SIRH.Models.Diploma", "Diploma")
                         .WithMany()
                         .HasForeignKey("DiplomaId")
@@ -573,6 +622,19 @@ namespace SIRH.Migrations
                         .HasForeignKey("LanguageLevelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("SIRH.Models.Candidature", b =>
+                {
+                    b.HasOne("SIRH.Models.Candidate", "Candidate")
+                        .WithMany()
+                        .HasForeignKey("CandidateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SIRH.Models.JobOffer", "JobOffer")
+                        .WithMany()
+                        .HasForeignKey("JobOfferId");
                 });
 
             modelBuilder.Entity("SIRH.Models.JobOffer", b =>

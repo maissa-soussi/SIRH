@@ -26,10 +26,10 @@ namespace SIRH.Controllers
         public async Task<ActionResult<IEnumerable<Candidature>>> GetCandidature()
         {
             List<Candidature> candidatures = await _context.Candidature.ToListAsync();
-            foreach (Candidature jo in candidatures)
+            foreach (Candidature ca in candidatures)
             {
-                jo.Candidate = await _context.Candidate.FindAsync(jo.CandidateId);
-                jo.JobOffer = await _context.JobOffer.FindAsync(jo.JobOfferId);
+                ca.Candidate = await _context.Candidate.FindAsync(ca.CandidateId);
+                ca.JobOffer = await _context.JobOffer.FindAsync(ca.JobOfferId);
 
             }
             return candidatures;
@@ -42,7 +42,7 @@ namespace SIRH.Controllers
             var candidature = await _context.Candidature.FindAsync(id);
             candidature.Candidate = await _context.Candidate.FindAsync(candidature.CandidateId);
             candidature.JobOffer = await _context.JobOffer.FindAsync(candidature.JobOfferId);
-           
+
             if (candidature == null)
             {
                 return NotFound();

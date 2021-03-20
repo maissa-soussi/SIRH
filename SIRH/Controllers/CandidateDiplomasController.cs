@@ -30,6 +30,8 @@ namespace SIRH.Controllers
             {
                 element.Diploma = await _context.Diploma.FindAsync(element.DiplomaId);
                 element.Domain = await _context.Domain.FindAsync(element.DomainId);
+                element.Candidate = await _context.Candidate.FindAsync(element.CandidateId);
+
             }
             return listes;
         }
@@ -47,6 +49,8 @@ namespace SIRH.Controllers
             }
             candidateDiploma.Diploma = await _context.Diploma.FindAsync(candidateDiploma.DiplomaId);
             candidateDiploma.Domain = await _context.Domain.FindAsync(candidateDiploma.DomainId);
+            candidateDiploma.Candidate = await _context.Candidate.FindAsync(candidateDiploma.CandidateId);
+
             return candidateDiploma;
         }
 
@@ -90,6 +94,8 @@ namespace SIRH.Controllers
         {
             candidateDiploma.Diploma = await _context.Diploma.FindAsync(candidateDiploma.DiplomaId);
             candidateDiploma.Domain = await _context.Domain.FindAsync(candidateDiploma.DomainId);
+            candidateDiploma.Candidate = await _context.Candidate.FindAsync(candidateDiploma.CandidateId);
+
             _context.CandidateDiploma.Add(candidateDiploma);
             await _context.SaveChangesAsync();
 

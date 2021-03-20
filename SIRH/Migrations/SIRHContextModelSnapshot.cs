@@ -92,6 +92,10 @@ namespace SIRH.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CandidateId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
                     b.Property<string>("Date")
                         .IsRequired()
                         .HasColumnType("nvarchar(10)")
@@ -111,6 +115,8 @@ namespace SIRH.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CandidateId");
 
                     b.HasIndex("DiplomaId");
 
@@ -212,7 +218,8 @@ namespace SIRH.Migrations
 
                     b.Property<string>("CandidatureDate")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
 
                     b.Property<string>("CoverLetterPath")
                         .IsRequired()
@@ -220,11 +227,10 @@ namespace SIRH.Migrations
                         .HasMaxLength(255);
 
                     b.Property<string>("JobInterviewDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
 
                     b.Property<int?>("JobOfferId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -555,6 +561,12 @@ namespace SIRH.Migrations
 
             modelBuilder.Entity("SIRH.Models.CandidateDiploma", b =>
                 {
+                    b.HasOne("SIRH.Models.Candidate", "Candidate")
+                        .WithMany()
+                        .HasForeignKey("CandidateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SIRH.Models.Diploma", "Diploma")
                         .WithMany()
                         .HasForeignKey("DiplomaId")
@@ -620,9 +632,7 @@ namespace SIRH.Migrations
 
                     b.HasOne("SIRH.Models.JobOffer", "JobOffer")
                         .WithMany()
-                        .HasForeignKey("JobOfferId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("JobOfferId");
                 });
 
             modelBuilder.Entity("SIRH.Models.JobOffer", b =>

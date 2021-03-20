@@ -29,6 +29,9 @@ namespace SIRH
         {
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddDbContext<SIRHContext>(options =>
+                   options.UseSqlServer(Configuration.GetConnectionString("SIRHContext")));
+            //services.AddSwaggerGen();
 
         }
 
@@ -39,6 +42,11 @@ namespace SIRH
             {
                 app.UseDeveloperExceptionPage();
             }
+            /*app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });*/
 
             app.UseHttpsRedirection();
 

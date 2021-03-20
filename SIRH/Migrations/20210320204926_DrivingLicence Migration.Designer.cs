@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SIRH.Data;
 
 namespace SIRH.Migrations
 {
     [DbContext(typeof(SIRHContext))]
-    partial class SIRHContextModelSnapshot : ModelSnapshot
+    [Migration("20210320204926_DrivingLicence Migration")]
+    partial class DrivingLicenceMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -331,23 +333,6 @@ namespace SIRH.Migrations
                     b.HasIndex("ExperienceId");
 
                     b.ToTable("JobOffer");
-                });
-
-            modelBuilder.Entity("SIRH.Models.SalaryWish", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Salary")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SalaryWish");
                 });
 
             modelBuilder.Entity("SIRH.Models.User", b =>

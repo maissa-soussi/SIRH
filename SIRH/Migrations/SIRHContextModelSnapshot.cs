@@ -199,6 +199,43 @@ namespace SIRH.Migrations
                     b.ToTable("CandidateLanguage");
                 });
 
+            modelBuilder.Entity("SIRH.Models.Candidature", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CandidateId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CandidatureDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CoverLetterPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("JobInterviewDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("JobOfferId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CandidateId");
+
+                    b.HasIndex("JobOfferId");
+
+                    b.ToTable("Candidature");
+                });
+
             modelBuilder.Entity("SIRH.Models.ContratType", b =>
                 {
                     b.Property<int>("Id")
@@ -569,6 +606,21 @@ namespace SIRH.Migrations
                     b.HasOne("SIRH.Models.LanguageLevel", "LanguageLevel")
                         .WithMany()
                         .HasForeignKey("LanguageLevelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SIRH.Models.Candidature", b =>
+                {
+                    b.HasOne("SIRH.Models.Candidate", "Candidate")
+                        .WithMany()
+                        .HasForeignKey("CandidateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SIRH.Models.JobOffer", "JobOffer")
+                        .WithMany()
+                        .HasForeignKey("JobOfferId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

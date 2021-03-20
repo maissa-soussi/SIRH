@@ -39,5 +39,9 @@ namespace SIRH.Data
         public DbSet<SIRH.Models.SalaryWish> SalaryWish { get; set; }
 
         public DbSet<SIRH.Models.Other> Other { get; set; }
+
+        public DbSet<SIRH.Models.Language> Language { get; set; }
+
+        public DbSet<SIRH.Models.LanguageLevel> LanguageLevel { get; set; }
     }
 }

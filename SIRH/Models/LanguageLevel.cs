@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace SIRH.Models
 {
-    public class Language
+    public class LanguageLevel
     {
         public int Id { get; set; }
 
         [Required]
         [StringLength(100)]
         public string Name { get; set; }
-
-        
     }
 }

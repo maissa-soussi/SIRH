@@ -25,7 +25,14 @@ namespace SIRH.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Other>>> GetOther()
         {
-            return await _context.Other.ToListAsync();
+            List<Other> others = await _context.Other.ToListAsync();
+            foreach (Other jo in others)
+            {
+                jo.SalaryWish = await _context.SalaryWish.FindAsync(jo.SalaryWishId);
+                jo.DrivingLicence = await _context.DrivingLicence.FindAsync(jo.DrivingLicenceId);
+                
+            }
+            return others;
         }
 
         // GET: api/Other/5
@@ -33,7 +40,8 @@ namespace SIRH.Controllers
         public async Task<ActionResult<Other>> GetOther(int id)
         {
             var other = await _context.Other.FindAsync(id);
-
+            other.SalaryWish = await _context.SalaryWish.FindAsync(other.SalaryWishId);
+            other.DrivingLicence = await _context.DrivingLicence.FindAsync(other.DrivingLicenceId);
             if (other == null)
             {
                 return NotFound();
@@ -80,6 +88,8 @@ namespace SIRH.Controllers
         [HttpPost]
         public async Task<ActionResult<Other>> PostOther(Other other)
         {
+            other.SalaryWish = await _context.SalaryWish.FindAsync(other.SalaryWishId);
+            other.DrivingLicence = await _context.DrivingLicence.FindAsync(other.DrivingLicenceId);
             _context.Other.Add(other);
             await _context.SaveChangesAsync();
 

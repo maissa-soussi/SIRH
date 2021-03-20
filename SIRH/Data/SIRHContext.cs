@@ -31,5 +31,7 @@ namespace SIRH.Data
         public DbSet<SIRH.Models.User> User { get; set; }
 
         public DbSet<SIRH.Models.JobOffer> JobOffer { get; set; }
+
+        public DbSet<SIRH.Models.CandidateExperience> CandidateExperience { get; set; }
     }
 }

@@ -30,5 +30,9 @@ namespace SIRH.Models
         [ForeignKey("Domain")]
         public int? DomainId { get; set; }
         public virtual Domain Domain { get; set; }
+        [Required]
+        [ForeignKey("Candidate")]
+        public int? CandidateId { get; set; }
+        public virtual Candidate Candidate { get; set; }
     }
 }

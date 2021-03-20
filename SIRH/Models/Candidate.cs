@@ -30,13 +30,9 @@ namespace SIRH.Models
         [StringLength(255)]
         public string PicturePath { get; set; }
 
-        /*[Required]
-        [StringLength(255)]
-        public string CvPath { get; set; }
-
         [Required]
         [StringLength(255)]
-        public string CoverLetterPath { get; set; }*/
+        public string CvPath { get; set; }
 
         [Required]
         [StringLength(8)]
@@ -52,6 +48,16 @@ namespace SIRH.Models
         [ForeignKey("User")]
         public int UserId { get; set; }
         public virtual User User { get; set; }
+
+        [Required]
+        [ForeignKey("Country")]
+        public int? CountryId { get; set; }
+        public virtual Country Country { get; set; }
+
+        [Required]
+        [ForeignKey("Other")]
+        public int? OtherId { get; set; }
+        public virtual Other Other { get; set; }
 
     }
 }

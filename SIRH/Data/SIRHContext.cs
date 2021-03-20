@@ -43,5 +43,9 @@ namespace SIRH.Data
         public DbSet<SIRH.Models.Language> Language { get; set; }
 
         public DbSet<SIRH.Models.LanguageLevel> LanguageLevel { get; set; }
+
+        public DbSet<SIRH.Models.CandidateLanguage> CandidateLanguage { get; set; }
+
+        public DbSet<SIRH.Models.Candidate> Candidate { get; set; }
     }
 }

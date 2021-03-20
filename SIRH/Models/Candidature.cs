@@ -17,6 +17,11 @@ namespace SIRH.Models
         public String CandidatureDate { get; set; }
 
         [Required]
+        [StringLength(255)]
+        public string CoverLetterPath { get; set; }
+
+
+        [Required]
         [ForeignKey("JobOffer")]
         public int? JobOfferId { get; set; }
         public virtual JobOffer JobOffer { get; set; }
@@ -26,6 +31,8 @@ namespace SIRH.Models
         public int? CandidateId { get; set; }
         public virtual Candidate Candidate { get; set; }
 
+
+        
 
     }
 }

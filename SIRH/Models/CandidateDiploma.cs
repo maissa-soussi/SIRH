@@ -18,6 +18,10 @@ namespace SIRH.Models
 		[StringLength(50)]
 		public string University { get; set; }
 		[Required]
+		[ForeignKey("Candidate")]
+		public int? CandidateId { get; set; }
+		public virtual Candidate Candidate { get; set; }
+		[Required]
 		[ForeignKey("Domain")]
 		public int? DomainId { get; set; }
 		public virtual Domain Domain { get; set; }

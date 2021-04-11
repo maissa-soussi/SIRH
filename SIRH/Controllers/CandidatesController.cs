@@ -33,8 +33,6 @@ namespace SIRH.Controllers
                 jo.User = await _context.User.FindAsync(jo.UserId);
                 jo.Country = await _context.Country.FindAsync(jo.CountryId);
                 jo.Other = await _context.Other.FindAsync(jo.OtherId);
-                jo.Other.SalaryWish = await _context.SalaryWish.FindAsync(jo.Other.SalaryWishId);
-                jo.Other.DrivingLicence = await _context.DrivingLicence.FindAsync(jo.Other.DrivingLicenceId);
 
             }
             return candidates;

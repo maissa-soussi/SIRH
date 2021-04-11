@@ -92,6 +92,10 @@ namespace SIRH.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CandidateId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
                     b.Property<string>("Date")
                         .IsRequired()
                         .HasColumnType("nvarchar(10)")
@@ -111,6 +115,8 @@ namespace SIRH.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CandidateId");
 
                     b.HasIndex("DiplomaId");
 
@@ -555,6 +561,12 @@ namespace SIRH.Migrations
 
             modelBuilder.Entity("SIRH.Models.CandidateDiploma", b =>
                 {
+                    b.HasOne("SIRH.Models.Candidate", "Candidate")
+                        .WithMany()
+                        .HasForeignKey("CandidateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SIRH.Models.Diploma", "Diploma")
                         .WithMany()
                         .HasForeignKey("DiplomaId")

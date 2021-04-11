@@ -28,11 +28,13 @@ namespace SIRH.Controllers
             
 
             List<Candidate> candidates = await _context.Candidate.ToListAsync();
-            foreach (Candidate jo in candidates)
+            foreach (Candidate ca in candidates)
             {
-                jo.User = await _context.User.FindAsync(jo.UserId);
-                jo.Country = await _context.Country.FindAsync(jo.CountryId);
-                jo.Other = await _context.Other.FindAsync(jo.OtherId);
+                ca.User = await _context.User.FindAsync(ca.UserId);
+                ca.Country = await _context.Country.FindAsync(ca.CountryId);
+                ca.Other = await _context.Other.FindAsync(ca.OtherId);
+                ca.Other.SalaryWish = await _context.SalaryWish.FindAsync(ca.Other.SalaryWishId);
+                ca.Other.DrivingLicence = await _context.DrivingLicence.FindAsync(ca.Other.DrivingLicenceId);
 
             }
             return candidates;

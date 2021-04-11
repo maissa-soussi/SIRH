@@ -154,34 +154,6 @@ namespace SIRH.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CandidateDiploma",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<string>(maxLength: 10, nullable: false),
-                    University = table.Column<string>(maxLength: 50, nullable: false),
-                    DomainId = table.Column<int>(nullable: false),
-                    DiplomaId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CandidateDiploma", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_CandidateDiploma_Diploma_DiplomaId",
-                        column: x => x.DiplomaId,
-                        principalTable: "Diploma",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CandidateDiploma_Domain_DomainId",
-                        column: x => x.DomainId,
-                        principalTable: "Domain",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "JobOffer",
                 columns: table => new
                 {
@@ -304,6 +276,41 @@ namespace SIRH.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CandidateDiploma",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Date = table.Column<string>(maxLength: 10, nullable: false),
+                    University = table.Column<string>(maxLength: 50, nullable: false),
+                    CandidateId = table.Column<int>(nullable: false),
+                    DomainId = table.Column<int>(nullable: false),
+                    DiplomaId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CandidateDiploma", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CandidateDiploma_Candidate_CandidateId",
+                        column: x => x.CandidateId,
+                        principalTable: "Candidate",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CandidateDiploma_Diploma_DiplomaId",
+                        column: x => x.DiplomaId,
+                        principalTable: "Diploma",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CandidateDiploma_Domain_DomainId",
+                        column: x => x.DomainId,
+                        principalTable: "Domain",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CandidateExperience",
                 columns: table => new
                 {
@@ -416,6 +423,11 @@ namespace SIRH.Migrations
                 name: "IX_Candidate_UserId",
                 table: "Candidate",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CandidateDiploma_CandidateId",
+                table: "CandidateDiploma",
+                column: "CandidateId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CandidateDiploma_DiplomaId",

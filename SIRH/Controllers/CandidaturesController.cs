@@ -29,7 +29,17 @@ namespace SIRH.Controllers
             foreach (Candidature ca in candidatures)
             {
                 ca.Candidate = await _context.Candidate.FindAsync(ca.CandidateId);
+                ca.Candidate.User = await _context.User.FindAsync(ca.Candidate.UserId);
+                ca.Candidate.Country = await _context.Country.FindAsync(ca.Candidate.CountryId);
+                ca.Candidate.Other = await _context.Other.FindAsync(ca.Candidate.OtherId);
+                ca.Candidate.Other.SalaryWish = await _context.SalaryWish.FindAsync(ca.Candidate.Other.SalaryWishId);
+                ca.Candidate.Other.DrivingLicence = await _context.DrivingLicence.FindAsync(ca.Candidate.Other.DrivingLicenceId);
                 ca.JobOffer = await _context.JobOffer.FindAsync(ca.JobOfferId);
+                ca.JobOffer.Country = await _context.Country.FindAsync(ca.JobOffer.CountryId);
+                ca.JobOffer.Diploma = await _context.Diploma.FindAsync(ca.JobOffer.DiplomaId);
+                ca.JobOffer.Experience = await _context.Experience.FindAsync(ca.JobOffer.ExperienceId);
+                ca.JobOffer.ContratType = await _context.ContratType.FindAsync(ca.JobOffer.ContratTypeId);
+                ca.JobOffer.Currency = await _context.Currency.FindAsync(ca.JobOffer.CurrencyId);
 
             }
             return candidatures;
@@ -41,7 +51,17 @@ namespace SIRH.Controllers
         {
             var candidature = await _context.Candidature.FindAsync(id);
             candidature.Candidate = await _context.Candidate.FindAsync(candidature.CandidateId);
+            candidature.Candidate.User = await _context.User.FindAsync(candidature.Candidate.UserId);
+            candidature.Candidate.Country = await _context.Country.FindAsync(candidature.Candidate.CountryId);
+            candidature.Candidate.Other = await _context.Other.FindAsync(candidature.Candidate.OtherId);
+            candidature.Candidate.Other.SalaryWish = await _context.SalaryWish.FindAsync(candidature.Candidate.Other.SalaryWishId);
+            candidature.Candidate.Other.DrivingLicence = await _context.DrivingLicence.FindAsync(candidature.Candidate.Other.DrivingLicenceId);
             candidature.JobOffer = await _context.JobOffer.FindAsync(candidature.JobOfferId);
+            candidature.JobOffer.Country = await _context.Country.FindAsync(candidature.JobOffer.CountryId);
+            candidature.JobOffer.Diploma = await _context.Diploma.FindAsync(candidature.JobOffer.DiplomaId);
+            candidature.JobOffer.Experience = await _context.Experience.FindAsync(candidature.JobOffer.ExperienceId);
+            candidature.JobOffer.ContratType = await _context.ContratType.FindAsync(candidature.JobOffer.ContratTypeId);
+            candidature.JobOffer.Currency = await _context.Currency.FindAsync(candidature.JobOffer.CurrencyId);
 
             if (candidature == null)
             {
@@ -90,7 +110,17 @@ namespace SIRH.Controllers
         public async Task<ActionResult<Candidature>> PostCandidature(Candidature candidature)
         {
             candidature.Candidate = await _context.Candidate.FindAsync(candidature.CandidateId);
+            candidature.Candidate.User = await _context.User.FindAsync(candidature.Candidate.UserId);
+            candidature.Candidate.Country = await _context.Country.FindAsync(candidature.Candidate.CountryId);
+            candidature.Candidate.Other = await _context.Other.FindAsync(candidature.Candidate.OtherId);
+            candidature.Candidate.Other.SalaryWish = await _context.SalaryWish.FindAsync(candidature.Candidate.Other.SalaryWishId);
+            candidature.Candidate.Other.DrivingLicence = await _context.DrivingLicence.FindAsync(candidature.Candidate.Other.DrivingLicenceId);
             candidature.JobOffer = await _context.JobOffer.FindAsync(candidature.JobOfferId);
+            candidature.JobOffer.Country = await _context.Country.FindAsync(candidature.JobOffer.CountryId);
+            candidature.JobOffer.Diploma = await _context.Diploma.FindAsync(candidature.JobOffer.DiplomaId);
+            candidature.JobOffer.Experience = await _context.Experience.FindAsync(candidature.JobOffer.ExperienceId);
+            candidature.JobOffer.ContratType = await _context.ContratType.FindAsync(candidature.JobOffer.ContratTypeId);
+            candidature.JobOffer.Currency = await _context.Currency.FindAsync(candidature.JobOffer.CurrencyId);
             _context.Candidature.Add(candidature);
             await _context.SaveChangesAsync();
 

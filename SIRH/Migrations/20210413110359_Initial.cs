@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SIRH.Migrations
 {
@@ -142,11 +143,13 @@ namespace SIRH.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(maxLength: 100, nullable: false),
-                    LastName = table.Column<string>(maxLength: 100, nullable: false),
+                    FirstName = table.Column<string>(maxLength: 100, nullable: true),
+                    LastName = table.Column<string>(maxLength: 100, nullable: true),
                     Email = table.Column<string>(nullable: false),
                     Password = table.Column<string>(maxLength: 100, nullable: false),
-                    Role = table.Column<string>(maxLength: 100, nullable: false)
+                    Role = table.Column<string>(maxLength: 100, nullable: true),
+                    RefreshToken = table.Column<string>(nullable: true),
+                    RefreshTokenExpiryTime = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

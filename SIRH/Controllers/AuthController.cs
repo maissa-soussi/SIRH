@@ -45,11 +45,7 @@ namespace SIRH.Controllers
             user.RefreshToken = refreshToken;
             user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);
             sirhContext.SaveChanges();
-            return Ok(new
-            {
-                Token = accessToken,
-                RefreshToken = refreshToken
-            });
+            return Ok(user);
         }
     }
 }

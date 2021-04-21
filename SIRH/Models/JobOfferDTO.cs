@@ -8,6 +8,6 @@ namespace SIRH.Models
     public class JobOfferDTO
     {
         public JobOffer JobOffer { get; set; }
-        public List<int> CandidateIDs { get; set; }
+        public List<int?> CandidateIDs { get; set; }
     }
 }

@@ -21,6 +21,19 @@ namespace SIRH.Controllers
             _context = context;
         }
 
+        public async Task<List<Diploma>> GetAllByIdAsync(int idCandidate)
+        {
+            List<CandidateDiploma> listes = await _context.CandidateDiploma.ToListAsync();
+            List<Diploma> dip=new List<Diploma>();
+            foreach (CandidateDiploma element in listes)
+                {
+                if (element.CandidateId == idCandidate)
+                    dip.Add(element.Diploma);
+
+            }
+            return dip;
+
+        }
         // GET: api/CandidateDiplomas
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CandidateDiploma>>> GetCandidateDiploma()

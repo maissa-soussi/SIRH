@@ -26,6 +26,7 @@ namespace SIRH.Controllers
         public async Task<ActionResult<IEnumerable<Candidature>>> GetCandidature()
         {
             List<Candidature> candidatures = await _context.Candidature.ToListAsync();
+            List<CandidateExperience> listes = await _context.CandidateExperience.ToListAsync();
             foreach (Candidature ca in candidatures)
             {
                 ca.Candidate = await _context.Candidate.FindAsync(ca.CandidateId);
@@ -40,7 +41,13 @@ namespace SIRH.Controllers
                 ca.JobOffer.Experience = await _context.Experience.FindAsync(ca.JobOffer.ExperienceId);
                 ca.JobOffer.ContratType = await _context.ContratType.FindAsync(ca.JobOffer.ContratTypeId);
                 ca.JobOffer.Currency = await _context.Currency.FindAsync(ca.JobOffer.CurrencyId);
-
+                /*List<Experience> exp = new List<Experience>();
+                foreach (CandidateExperience element in listes)
+                {
+                    if (element.CandidateId == ca.CandidateId)
+                        exp.Add(element.Experience);
+                }
+                ca.Experiences = exp;*/
             }
             return candidatures;
         }

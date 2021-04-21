@@ -27,7 +27,9 @@ namespace SIRH.Models
         public virtual Candidate Candidate { get; set; }
 
 
-        
+
+
+
 
     }
 }

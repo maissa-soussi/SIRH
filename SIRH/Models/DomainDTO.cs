@@ -8,6 +8,6 @@ namespace SIRH.Models
     public class DomainDTO
     {
         public Domain Domain { get; set; }
-        public List<int> CandidateIDs { get; set; }
+        public List<int?> CandidateIDs { get; set; }
     }
 }

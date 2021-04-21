@@ -21,6 +21,7 @@ namespace SIRH.Controllers
             _context = context;
         }
 
+        
         // GET: api/CandidateExperiences
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CandidateExperience>>> GetCandidateExperience()

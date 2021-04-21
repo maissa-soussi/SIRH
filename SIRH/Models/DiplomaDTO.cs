@@ -8,6 +8,6 @@ namespace SIRH.Models
     public class DiplomaDTO
     {
         public Diploma Diploma { get; set; }
-        public List<int> CandidateIDs { get; set; }
+        public List<int?> CandidateIDs { get; set; }
     }
 }

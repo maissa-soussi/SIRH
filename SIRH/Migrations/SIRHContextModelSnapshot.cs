@@ -386,6 +386,10 @@ namespace SIRH.Migrations
                     b.Property<int?>("DiplomaId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("DomainId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
                     b.Property<int?>("ExperienceId")
                         .HasColumnType("int");
 
@@ -417,6 +421,8 @@ namespace SIRH.Migrations
                     b.HasIndex("CurrencyId");
 
                     b.HasIndex("DiplomaId");
+
+                    b.HasIndex("DomainId");
 
                     b.HasIndex("ExperienceId");
 
@@ -661,6 +667,12 @@ namespace SIRH.Migrations
                     b.HasOne("SIRH.Models.Diploma", "Diploma")
                         .WithMany()
                         .HasForeignKey("DiplomaId");
+
+                    b.HasOne("SIRH.Models.Domain", "Domain")
+                        .WithMany()
+                        .HasForeignKey("DomainId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("SIRH.Models.Experience", "Experience")
                         .WithMany()

@@ -172,7 +172,8 @@ namespace SIRH.Migrations
                     MinSalary = table.Column<int>(nullable: false),
                     MaxSalary = table.Column<int>(nullable: false),
                     PublicationDate = table.Column<string>(maxLength: 10, nullable: false),
-                    ExpirationDate = table.Column<string>(maxLength: 10, nullable: false)
+                    ExpirationDate = table.Column<string>(maxLength: 10, nullable: false),
+                    DomainId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -201,6 +202,12 @@ namespace SIRH.Migrations
                         principalTable: "Diploma",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_JobOffer_Domain_DomainId",
+                        column: x => x.DomainId,
+                        principalTable: "Domain",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_JobOffer_Experience_ExperienceId",
                         column: x => x.ExperienceId,
@@ -503,6 +510,11 @@ namespace SIRH.Migrations
                 column: "DiplomaId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_JobOffer_DomainId",
+                table: "JobOffer",
+                column: "DomainId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_JobOffer_ExperienceId",
                 table: "JobOffer",
                 column: "ExperienceId");
@@ -533,9 +545,6 @@ namespace SIRH.Migrations
                 name: "Candidature");
 
             migrationBuilder.DropTable(
-                name: "Domain");
-
-            migrationBuilder.DropTable(
                 name: "Language");
 
             migrationBuilder.DropTable(
@@ -564,6 +573,9 @@ namespace SIRH.Migrations
 
             migrationBuilder.DropTable(
                 name: "Diploma");
+
+            migrationBuilder.DropTable(
+                name: "Domain");
 
             migrationBuilder.DropTable(
                 name: "Experience");

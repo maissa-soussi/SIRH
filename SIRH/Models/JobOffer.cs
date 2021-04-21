@@ -40,6 +40,10 @@ namespace SIRH.Models
         [Required]
         [StringLength(10)]
         public string ExpirationDate { get; set; }
-        
+        [Required]
+        [ForeignKey("Domain")]
+        public int? DomainId { get; set; }
+        public virtual Domain Domain { get; set; }
+
     }
 }

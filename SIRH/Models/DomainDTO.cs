@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace SIRH.Models
 {
-    public class JobOfferDTO
+    public class DomainDTO
     {
-        public JobOffer JobOffer { get; set; }
+        public Domain Domain { get; set; }
         public List<int> CandidateIDs { get; set; }
     }
 }

@@ -32,7 +32,7 @@ namespace SIRH.Controllers
                 jo.Diploma = await _context.Diploma.FindAsync(jo.DiplomaId);
                 jo.Experience = await _context.Experience.FindAsync(jo.ExperienceId);
                 jo.ContratType = await _context.ContratType.FindAsync(jo.ContratTypeId);
-                jo.Currency = await _context.Currency.FindAsync(jo.CurrencyId);
+                jo.Domain = await _context.Domain.FindAsync(jo.DomainId);
             }
             return jobOffers;
         }
@@ -46,7 +46,7 @@ namespace SIRH.Controllers
             jobOffer.Diploma = await _context.Diploma.FindAsync(jobOffer.DiplomaId);
             jobOffer.Experience = await _context.Experience.FindAsync(jobOffer.ExperienceId);
             jobOffer.ContratType = await _context.ContratType.FindAsync(jobOffer.ContratTypeId);
-            jobOffer.Currency = await _context.Currency.FindAsync(jobOffer.CurrencyId);
+            jobOffer.Domain = await _context.Domain.FindAsync(jobOffer.DomainId);
 
             if (jobOffer == null)
             {
@@ -98,7 +98,7 @@ namespace SIRH.Controllers
             jobOffer.Diploma = await _context.Diploma.FindAsync(jobOffer.DiplomaId);
             jobOffer.Experience = await _context.Experience.FindAsync(jobOffer.ExperienceId);
             jobOffer.ContratType = await _context.ContratType.FindAsync(jobOffer.ContratTypeId);
-            jobOffer.Currency = await _context.Currency.FindAsync(jobOffer.CurrencyId);
+            jobOffer.Domain = await _context.Domain.FindAsync(jobOffer.DomainId);
             _context.JobOffer.Add(jobOffer);
             await _context.SaveChangesAsync();
 

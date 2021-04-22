@@ -34,19 +34,6 @@ namespace SIRH.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Currency",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(maxLength: 50, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Currency", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Diploma",
                 columns: table => new
                 {
@@ -168,7 +155,6 @@ namespace SIRH.Migrations
                     ExperienceId = table.Column<int>(nullable: true),
                     ContratTypeId = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
-                    CurrencyId = table.Column<int>(nullable: false),
                     MinSalary = table.Column<int>(nullable: false),
                     MaxSalary = table.Column<int>(nullable: false),
                     PublicationDate = table.Column<string>(maxLength: 10, nullable: false),
@@ -188,12 +174,6 @@ namespace SIRH.Migrations
                         name: "FK_JobOffer_Country_CountryId",
                         column: x => x.CountryId,
                         principalTable: "Country",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_JobOffer_Currency_CurrencyId",
-                        column: x => x.CurrencyId,
-                        principalTable: "Currency",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -500,11 +480,6 @@ namespace SIRH.Migrations
                 column: "CountryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_JobOffer_CurrencyId",
-                table: "JobOffer",
-                column: "CurrencyId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_JobOffer_DiplomaId",
                 table: "JobOffer",
                 column: "DiplomaId");
@@ -567,9 +542,6 @@ namespace SIRH.Migrations
 
             migrationBuilder.DropTable(
                 name: "Country");
-
-            migrationBuilder.DropTable(
-                name: "Currency");
 
             migrationBuilder.DropTable(
                 name: "Diploma");

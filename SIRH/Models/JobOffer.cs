@@ -27,10 +27,6 @@ namespace SIRH.Models
         public virtual ContratType ContratType { get; set; }
         public string Description { get; set; }
         [Required]
-        [ForeignKey("Currency")]
-        public int? CurrencyId { get; set; }
-        public virtual Currency Currency { get; set; }
-        [Required]
         public int MinSalary { get; set; }
         [Required]
         public int MaxSalary { get; set; }

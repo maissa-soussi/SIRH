@@ -10,7 +10,7 @@ using SIRH.Data;
 namespace SIRH.Migrations
 {
     [DbContext(typeof(SIRHContext))]
-    [Migration("20210421132652_Initial")]
+    [Migration("20210422151656_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -278,23 +278,6 @@ namespace SIRH.Migrations
                     b.ToTable("Country");
                 });
 
-            modelBuilder.Entity("SIRH.Models.Currency", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Currency");
-                });
-
             modelBuilder.Entity("SIRH.Models.Diploma", b =>
                 {
                     b.Property<int>("Id")
@@ -378,10 +361,6 @@ namespace SIRH.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int?>("CurrencyId")
-                        .IsRequired()
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -419,8 +398,6 @@ namespace SIRH.Migrations
                     b.HasIndex("ContratTypeId");
 
                     b.HasIndex("CountryId");
-
-                    b.HasIndex("CurrencyId");
 
                     b.HasIndex("DiplomaId");
 
@@ -657,12 +634,6 @@ namespace SIRH.Migrations
                     b.HasOne("SIRH.Models.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SIRH.Models.Currency", "Currency")
-                        .WithMany()
-                        .HasForeignKey("CurrencyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

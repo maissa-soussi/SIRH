@@ -40,7 +40,7 @@ namespace SIRH.Controllers
                 ca.JobOffer.Diploma = await _context.Diploma.FindAsync(ca.JobOffer.DiplomaId);
                 ca.JobOffer.Experience = await _context.Experience.FindAsync(ca.JobOffer.ExperienceId);
                 ca.JobOffer.ContratType = await _context.ContratType.FindAsync(ca.JobOffer.ContratTypeId);
-                ca.JobOffer.Currency = await _context.Currency.FindAsync(ca.JobOffer.CurrencyId);
+                ca.JobOffer.Domain = await _context.Domain.FindAsync(ca.JobOffer.DomainId);
                 /*List<Experience> exp = new List<Experience>();
                 foreach (CandidateExperience element in listes)
                 {
@@ -68,7 +68,7 @@ namespace SIRH.Controllers
             candidature.JobOffer.Diploma = await _context.Diploma.FindAsync(candidature.JobOffer.DiplomaId);
             candidature.JobOffer.Experience = await _context.Experience.FindAsync(candidature.JobOffer.ExperienceId);
             candidature.JobOffer.ContratType = await _context.ContratType.FindAsync(candidature.JobOffer.ContratTypeId);
-            candidature.JobOffer.Currency = await _context.Currency.FindAsync(candidature.JobOffer.CurrencyId);
+            candidature.JobOffer.Domain = await _context.Domain.FindAsync(candidature.JobOffer.DomainId);
 
             if (candidature == null)
             {
@@ -127,7 +127,7 @@ namespace SIRH.Controllers
             candidature.JobOffer.Diploma = await _context.Diploma.FindAsync(candidature.JobOffer.DiplomaId);
             candidature.JobOffer.Experience = await _context.Experience.FindAsync(candidature.JobOffer.ExperienceId);
             candidature.JobOffer.ContratType = await _context.ContratType.FindAsync(candidature.JobOffer.ContratTypeId);
-            candidature.JobOffer.Currency = await _context.Currency.FindAsync(candidature.JobOffer.CurrencyId);
+            candidature.JobOffer.Domain = await _context.Domain.FindAsync(candidature.JobOffer.DomainId);
             _context.Candidature.Add(candidature);
             await _context.SaveChangesAsync();
 

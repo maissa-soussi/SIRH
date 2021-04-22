@@ -20,8 +20,6 @@ namespace SIRH.Data
 
         public DbSet<SIRH.Models.Country> Country { get; set; }
 
-        public DbSet<SIRH.Models.Currency> Currency { get; set; }
-
         public DbSet<SIRH.Models.Diploma> Diploma { get; set; }
 
         public DbSet<SIRH.Models.Domain> Domain { get; set; }

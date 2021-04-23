@@ -30,7 +30,7 @@ namespace SIRH.Controllers
             CountryDTO.Country = country;
             foreach (Candidate ca in candidates)
             {
-                if (ca.Country.Id == country.Id)
+                if (ca.CountryId == country.Id)
                     CandidateIDs.Add(ca.Id);
             }
             CountryDTO.CandidateIDs = CandidateIDs;

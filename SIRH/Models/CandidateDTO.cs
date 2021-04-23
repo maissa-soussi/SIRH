@@ -10,6 +10,8 @@ namespace SIRH.Models
         public int? ExperienceId { get; set; }
         public int DrivingLicenceId { get; set; }
         public int SalaryWishId { get; set; }
+        public string SalaryWish { get; set; }
+        public List<CandidateLanguageDTO> Languages { get; set; }
 
     }
 }

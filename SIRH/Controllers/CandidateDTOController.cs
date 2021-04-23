@@ -27,7 +27,8 @@ namespace SIRH.Controllers
             CandidateDTO CandidateDTO = new CandidateDTO();
             List<CandidateExperience> candidateExperiences = await _context.CandidateExperience.ToListAsync();
             List<Other> others = await _context.Other.ToListAsync();
-
+            List<CandidateLanguage> candidateLanguages = await _context.CandidateLanguage.ToListAsync();
+            List<CandidateLanguageDTO> languages = new List<CandidateLanguageDTO>();
 
             foreach (CandidateExperience ca in candidateExperiences)
             {
@@ -42,7 +43,19 @@ namespace SIRH.Controllers
                     CandidateDTO.SalaryWishId = o.SalaryWishId;
                 }
             }
-
+            foreach (CandidateLanguage cl in candidateLanguages)
+            {
+                if (cl.CandidateId == id)
+                {
+                    CandidateLanguageDTO candidateLanguageDTO = new CandidateLanguageDTO();
+                    candidateLanguageDTO.LanguageId = cl.LanguageId;
+                    candidateLanguageDTO.LanguageLevelId = cl.LanguageLevelId;
+                    languages.Add(candidateLanguageDTO);
+                }
+            }            
+            SalaryWish salary = await _context.SalaryWish.FindAsync(CandidateDTO.SalaryWishId);
+            CandidateDTO.SalaryWish = salary.Salary;
+            CandidateDTO.Languages = languages;
             return CandidateDTO;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -25,11 +26,9 @@ namespace SIRH.Models
         [ForeignKey("Candidate")]
         public int? CandidateId { get; set; }
         public virtual Candidate Candidate { get; set; }
-
-
-
-
-
-
+        [DefaultValue(1)]
+        [ForeignKey("Status")]
+        public int? StatusId { get; set; }
+        public virtual Status Status { get; set; }
     }
 }

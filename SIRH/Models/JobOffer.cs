@@ -10,7 +10,11 @@ namespace SIRH.Models
     public class JobOffer
     {
         public int Id { get; set; }
+        [Required]
         public string Reference { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string Name { get; set; }
         [Required]
         [ForeignKey("Country")]
         public int? CountryId { get; set; }

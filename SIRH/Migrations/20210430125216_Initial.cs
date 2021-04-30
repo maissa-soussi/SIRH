@@ -73,6 +73,19 @@ namespace SIRH.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "EducationLevel",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EducationLevel", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Experience",
                 columns: table => new
                 {
@@ -125,6 +138,19 @@ namespace SIRH.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Status",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Status", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
                 {
@@ -149,7 +175,8 @@ namespace SIRH.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Reference = table.Column<string>(nullable: true),
+                    Reference = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(maxLength: 50, nullable: false),
                     CountryId = table.Column<int>(nullable: false),
                     DiplomaId = table.Column<int>(nullable: true),
                     ExperienceId = table.Column<int>(nullable: true),
@@ -275,7 +302,8 @@ namespace SIRH.Migrations
                     University = table.Column<string>(maxLength: 50, nullable: false),
                     CandidateId = table.Column<int>(nullable: false),
                     DomainId = table.Column<int>(nullable: false),
-                    DiplomaId = table.Column<int>(nullable: false)
+                    DiplomaId = table.Column<int>(nullable: false),
+                    EducationLevelId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -296,6 +324,12 @@ namespace SIRH.Migrations
                         name: "FK_CandidateDiploma_Domain_DomainId",
                         column: x => x.DomainId,
                         principalTable: "Domain",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CandidateDiploma_EducationLevel_EducationLevelId",
+                        column: x => x.EducationLevelId,
+                        principalTable: "EducationLevel",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -380,7 +414,8 @@ namespace SIRH.Migrations
                     CandidatureDate = table.Column<string>(maxLength: 10, nullable: false),
                     CoverLetterPath = table.Column<string>(maxLength: 255, nullable: false),
                     JobOfferId = table.Column<int>(nullable: true),
-                    CandidateId = table.Column<int>(nullable: false)
+                    CandidateId = table.Column<int>(nullable: false),
+                    StatusId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -395,6 +430,12 @@ namespace SIRH.Migrations
                         name: "FK_Candidature_JobOffer_JobOfferId",
                         column: x => x.JobOfferId,
                         principalTable: "JobOffer",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Candidature_Status_StatusId",
+                        column: x => x.StatusId,
+                        principalTable: "Status",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -428,6 +469,11 @@ namespace SIRH.Migrations
                 name: "IX_CandidateDiploma_DomainId",
                 table: "CandidateDiploma",
                 column: "DomainId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CandidateDiploma_EducationLevelId",
+                table: "CandidateDiploma",
+                column: "EducationLevelId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CandidateExperience_CandidateId",
@@ -470,6 +516,11 @@ namespace SIRH.Migrations
                 column: "JobOfferId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Candidature_StatusId",
+                table: "Candidature",
+                column: "StatusId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_JobOffer_ContratTypeId",
                 table: "JobOffer",
                 column: "ContratTypeId");
@@ -495,6 +546,12 @@ namespace SIRH.Migrations
                 column: "ExperienceId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_JobOffer_Reference",
+                table: "JobOffer",
+                column: "Reference",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Other_DrivingLicenceId",
                 table: "Other",
                 column: "DrivingLicenceId");
@@ -503,6 +560,12 @@ namespace SIRH.Migrations
                 name: "IX_Other_SalaryWishId",
                 table: "Other",
                 column: "SalaryWishId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_Email",
+                table: "User",
+                column: "Email",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -520,6 +583,9 @@ namespace SIRH.Migrations
                 name: "Candidature");
 
             migrationBuilder.DropTable(
+                name: "EducationLevel");
+
+            migrationBuilder.DropTable(
                 name: "Language");
 
             migrationBuilder.DropTable(
@@ -530,6 +596,9 @@ namespace SIRH.Migrations
 
             migrationBuilder.DropTable(
                 name: "JobOffer");
+
+            migrationBuilder.DropTable(
+                name: "Status");
 
             migrationBuilder.DropTable(
                 name: "Other");

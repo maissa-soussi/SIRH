@@ -47,5 +47,19 @@ namespace SIRH.Data
         public DbSet<SIRH.Models.Candidate> Candidate { get; set; }
 
         public DbSet<SIRH.Models.Candidature> Candidature { get; set; }
+
+        public DbSet<SIRH.Models.Status> Status { get; set; }
+
+        public DbSet<SIRH.Models.EducationLevel> EducationLevel { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasIndex(u => new { u.Email })
+                .IsUnique(true);
+            modelBuilder.Entity<JobOffer>()
+                .HasIndex(jo => new { jo.Reference })
+                .IsUnique(true);
+        }
     }
 }

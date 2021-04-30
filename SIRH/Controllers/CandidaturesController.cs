@@ -30,6 +30,7 @@ namespace SIRH.Controllers
             foreach (Candidature ca in candidatures)
             {
                 ca.Candidate = await _context.Candidate.FindAsync(ca.CandidateId);
+                ca.Status = await _context.Status.FindAsync(ca.StatusId);
                 ca.Candidate.User = await _context.User.FindAsync(ca.Candidate.UserId);
                 ca.Candidate.Country = await _context.Country.FindAsync(ca.Candidate.CountryId);
                 ca.Candidate.Other = await _context.Other.FindAsync(ca.Candidate.OtherId);
@@ -58,6 +59,7 @@ namespace SIRH.Controllers
         {
             var candidature = await _context.Candidature.FindAsync(id);
             candidature.Candidate = await _context.Candidate.FindAsync(candidature.CandidateId);
+            candidature.Status = await _context.Status.FindAsync(candidature.StatusId);
             candidature.Candidate.User = await _context.User.FindAsync(candidature.Candidate.UserId);
             candidature.Candidate.Country = await _context.Country.FindAsync(candidature.Candidate.CountryId);
             candidature.Candidate.Other = await _context.Other.FindAsync(candidature.Candidate.OtherId);
@@ -117,6 +119,7 @@ namespace SIRH.Controllers
         public async Task<ActionResult<Candidature>> PostCandidature(Candidature candidature)
         {
             candidature.Candidate = await _context.Candidate.FindAsync(candidature.CandidateId);
+            candidature.Status = await _context.Status.FindAsync(candidature.StatusId);
             candidature.Candidate.User = await _context.User.FindAsync(candidature.Candidate.UserId);
             candidature.Candidate.Country = await _context.Country.FindAsync(candidature.Candidate.CountryId);
             candidature.Candidate.Other = await _context.Other.FindAsync(candidature.Candidate.OtherId);

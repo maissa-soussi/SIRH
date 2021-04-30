@@ -10,7 +10,7 @@ using SIRH.Data;
 namespace SIRH.Migrations
 {
     [DbContext(typeof(SIRHContext))]
-    [Migration("20210422151656_Initial")]
+    [Migration("20210430125216_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -111,6 +111,10 @@ namespace SIRH.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
+                    b.Property<int?>("EducationLevelId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
                     b.Property<string>("University")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
@@ -123,6 +127,8 @@ namespace SIRH.Migrations
                     b.HasIndex("DiplomaId");
 
                     b.HasIndex("DomainId");
+
+                    b.HasIndex("EducationLevelId");
 
                     b.ToTable("CandidateDiploma");
                 });
@@ -235,11 +241,16 @@ namespace SIRH.Migrations
                     b.Property<int?>("JobOfferId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("StatusId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CandidateId");
 
                     b.HasIndex("JobOfferId");
+
+                    b.HasIndex("StatusId");
 
                     b.ToTable("Candidature");
                 });
@@ -329,6 +340,23 @@ namespace SIRH.Migrations
                     b.ToTable("DrivingLicence");
                 });
 
+            modelBuilder.Entity("SIRH.Models.EducationLevel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EducationLevel");
+                });
+
             modelBuilder.Entity("SIRH.Models.Experience", b =>
                 {
                     b.Property<int>("Id")
@@ -385,13 +413,19 @@ namespace SIRH.Migrations
                     b.Property<int>("MinSalary")
                         .HasColumnType("int");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
                     b.Property<string>("PublicationDate")
                         .IsRequired()
                         .HasColumnType("nvarchar(10)")
                         .HasMaxLength(10);
 
                     b.Property<string>("Reference")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -404,6 +438,9 @@ namespace SIRH.Migrations
                     b.HasIndex("DomainId");
 
                     b.HasIndex("ExperienceId");
+
+                    b.HasIndex("Reference")
+                        .IsUnique();
 
                     b.ToTable("JobOffer");
                 });
@@ -487,6 +524,23 @@ namespace SIRH.Migrations
                     b.ToTable("SalaryWish");
                 });
 
+            modelBuilder.Entity("SIRH.Models.Status", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Status");
+                });
+
             modelBuilder.Entity("SIRH.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -496,7 +550,7 @@ namespace SIRH.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(100)")
@@ -522,6 +576,9 @@ namespace SIRH.Migrations
                         .HasMaxLength(100);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("User");
                 });
@@ -564,6 +621,12 @@ namespace SIRH.Migrations
                     b.HasOne("SIRH.Models.Domain", "Domain")
                         .WithMany()
                         .HasForeignKey("DomainId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SIRH.Models.EducationLevel", "EducationLevel")
+                        .WithMany()
+                        .HasForeignKey("EducationLevelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -621,6 +684,10 @@ namespace SIRH.Migrations
                     b.HasOne("SIRH.Models.JobOffer", "JobOffer")
                         .WithMany()
                         .HasForeignKey("JobOfferId");
+
+                    b.HasOne("SIRH.Models.Status", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId");
                 });
 
             modelBuilder.Entity("SIRH.Models.JobOffer", b =>

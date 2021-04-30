@@ -42,6 +42,7 @@ namespace SIRH.Controllers
             foreach (CandidateDiploma element in listes)
             {
                 element.Diploma = await _context.Diploma.FindAsync(element.DiplomaId);
+                element.EducationLevel = await _context.EducationLevel.FindAsync(element.EducationLevelId);
                 element.Domain = await _context.Domain.FindAsync(element.DomainId);
                 element.Candidate = await _context.Candidate.FindAsync(element.CandidateId);
                 element.Candidate.User = await _context.User.FindAsync(element.Candidate.UserId);
@@ -66,6 +67,7 @@ namespace SIRH.Controllers
                 return NotFound();
             }
             candidateDiploma.Diploma = await _context.Diploma.FindAsync(candidateDiploma.DiplomaId);
+            candidateDiploma.EducationLevel = await _context.EducationLevel.FindAsync(candidateDiploma.EducationLevelId);
             candidateDiploma.Domain = await _context.Domain.FindAsync(candidateDiploma.DomainId);
             candidateDiploma.Candidate = await _context.Candidate.FindAsync(candidateDiploma.CandidateId);
             candidateDiploma.Candidate.User = await _context.User.FindAsync(candidateDiploma.Candidate.UserId);
@@ -116,6 +118,7 @@ namespace SIRH.Controllers
         public async Task<ActionResult<CandidateDiploma>> PostCandidateDiploma(CandidateDiploma candidateDiploma)
         {
             candidateDiploma.Diploma = await _context.Diploma.FindAsync(candidateDiploma.DiplomaId);
+            candidateDiploma.EducationLevel = await _context.EducationLevel.FindAsync(candidateDiploma.EducationLevelId);
             candidateDiploma.Domain = await _context.Domain.FindAsync(candidateDiploma.DomainId);
             candidateDiploma.Candidate = await _context.Candidate.FindAsync(candidateDiploma.CandidateId);
             candidateDiploma.Candidate.User = await _context.User.FindAsync(candidateDiploma.Candidate.UserId);

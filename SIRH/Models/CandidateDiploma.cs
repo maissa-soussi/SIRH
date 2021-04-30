@@ -12,8 +12,6 @@ namespace SIRH.Models
 		[Required]
 		[StringLength(10)]
 		public string Date { get; set; }
-
-
 		[Required]
 		[StringLength(50)]
 		public string University { get; set; }
@@ -25,10 +23,13 @@ namespace SIRH.Models
 		[ForeignKey("Domain")]
 		public int? DomainId { get; set; }
 		public virtual Domain Domain { get; set; }
-
 		[Required]
 		[ForeignKey("Diploma")]
 		public int? DiplomaId { get; set; }
 		public virtual Diploma Diploma { get; set; }
+		[Required]
+		[ForeignKey("EducationLevel")]
+		public int? EducationLevelId { get; set; }
+		public virtual EducationLevel EducationLevel { get; set; }
 	}
 }

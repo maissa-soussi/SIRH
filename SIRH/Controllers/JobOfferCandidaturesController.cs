@@ -30,6 +30,7 @@ namespace SIRH.Controllers
                 if (ca.JobOfferId == id)
                 {
                     JobOfferCandidature jo = new JobOfferCandidature();
+                    jo.CandidatureId = ca.Id;
                     jo.JobInterviewDate = ca.JobInterviewDate;
                     jo.CandidatureDate = ca.CandidatureDate;
                     jo.CoverLetterPath = ca.CoverLetterPath;

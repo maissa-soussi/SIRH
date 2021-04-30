@@ -7,6 +7,7 @@ namespace SIRH.Models
 {
     public class JobOfferCandidature
     {
+        public int? CandidatureId { get; set; }
         public String JobInterviewDate { get; set; }
         public String CandidatureDate { get; set; }
         public string CoverLetterPath { get; set; }

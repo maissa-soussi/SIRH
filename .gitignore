@@ -363,3 +363,7 @@ MigrationBackup/
 FodyWeavers.xsd
 /SIRH/Migrations/20210413171315_intial.cs
 /SIRH/Migrations/20210413171315_intial.Designer.cs
+/SIRH/Migrations/20210422161103_intial.cs
+/SIRH/Migrations/20210422161103_intial.Designer.cs
+/SIRH/Migrations/20210430210419_intial.cs
+/SIRH/Migrations/20210430210419_intial.Designer.cs

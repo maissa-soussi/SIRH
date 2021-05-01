@@ -99,6 +99,7 @@ namespace SIRH.Controllers
             jobOffer.Experience = await _context.Experience.FindAsync(jobOffer.ExperienceId);
             jobOffer.ContratType = await _context.ContratType.FindAsync(jobOffer.ContratTypeId);
             jobOffer.Domain = await _context.Domain.FindAsync(jobOffer.DomainId);
+
             _context.JobOffer.Add(jobOffer);
             await _context.SaveChangesAsync();
 

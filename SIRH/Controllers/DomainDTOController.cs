@@ -30,7 +30,7 @@ namespace SIRH.Controllers
             DomainDTO.Domain = domain;
             foreach (CandidateExperience ca in candidateExperiences)
             {
-                if (ca.Domain.Name == domain.Name)
+                if (ca.DomainId == domain.Id)
                     CandidateIDs.Add(ca.CandidateId);
             }
             DomainDTO.CandidateIDs = CandidateIDs;

@@ -61,5 +61,7 @@ namespace SIRH.Data
                 .HasIndex(jo => new { jo.Reference })
                 .IsUnique(true);
         }
+
+        public DbSet<SIRH.Models.CandidatureSpont> CandidatureSpont { get; set; }
     }
 }

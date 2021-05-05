@@ -252,6 +252,42 @@ namespace SIRH.Migrations
 
                     b.ToTable("Candidature");
                 });
+            modelBuilder.Entity("SIRH.Models.CandidatureSpont", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                b.Property<int?>("CandidateId")
+                    .IsRequired()
+                    .HasColumnType("int");
+
+                b.Property<string>("CandidatureDate")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(10)")
+                    .HasMaxLength(10);
+
+                b.Property<string>("CoverLetterPath")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(255)")
+                    .HasMaxLength(255);
+
+                b.Property<string>("JobInterviewDate")
+                    .HasColumnType("nvarchar(10)")
+                    .HasMaxLength(10);
+
+                b.Property<int?>("StatusId")
+                    .HasColumnType("int");
+
+                b.HasKey("Id");
+
+                b.HasIndex("CandidateId");
+
+                b.HasIndex("StatusId");
+
+                b.ToTable("CandidatureSpont");
+            });
 
             modelBuilder.Entity("SIRH.Models.ContratType", b =>
                 {

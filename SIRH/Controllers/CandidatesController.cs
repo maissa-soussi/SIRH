@@ -32,9 +32,8 @@ namespace SIRH.Controllers
             {
                 ca.User = await _context.User.FindAsync(ca.UserId);
                 ca.Country = await _context.Country.FindAsync(ca.CountryId);
-                ca.Other = await _context.Other.FindAsync(ca.OtherId);
-                ca.Other.SalaryWish = await _context.SalaryWish.FindAsync(ca.Other.SalaryWishId);
-                ca.Other.DrivingLicence = await _context.DrivingLicence.FindAsync(ca.Other.DrivingLicenceId);
+                ca.SalaryWish = await _context.SalaryWish.FindAsync(ca.SalaryWishId);
+                ca.DrivingLicence = await _context.DrivingLicence.FindAsync(ca.DrivingLicenceId);
 
             }
             return candidates;
@@ -47,9 +46,8 @@ namespace SIRH.Controllers
             var candidate = await _context.Candidate.FindAsync(id);
             candidate.User = await _context.User.FindAsync(candidate.UserId);
             candidate.Country = await _context.Country.FindAsync(candidate.CountryId);
-            candidate.Other = await _context.Other.FindAsync(candidate.OtherId);
-            candidate.Other.SalaryWish = await _context.SalaryWish.FindAsync(candidate.Other.SalaryWishId);
-            candidate.Other.DrivingLicence = await _context.DrivingLicence.FindAsync(candidate.Other.DrivingLicenceId);
+            candidate.SalaryWish = await _context.SalaryWish.FindAsync(candidate.SalaryWishId);
+            candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(candidate.DrivingLicenceId);
 
             if (candidate == null)
             {
@@ -99,9 +97,8 @@ namespace SIRH.Controllers
         {
             candidate.User = await _context.User.FindAsync(candidate.UserId);
             candidate.Country = await _context.Country.FindAsync(candidate.CountryId);
-            candidate.Other = await _context.Other.FindAsync(candidate.OtherId);
-            candidate.Other.SalaryWish = await _context.SalaryWish.FindAsync(candidate.Other.SalaryWishId);
-            candidate.Other.DrivingLicence = await _context.DrivingLicence.FindAsync(candidate.Other.DrivingLicenceId);
+            candidate.SalaryWish = await _context.SalaryWish.FindAsync(candidate.SalaryWishId);
+            candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(candidate.DrivingLicenceId);
             _context.Candidate.Add(candidate);
             await _context.SaveChangesAsync();
 

@@ -27,13 +27,10 @@ namespace SIRH.Controllers
             try
             {
                 var candidate = await _context.Candidate.FirstAsync(p => p.UserId == id);
-
-
                     candidate.User = await _context.User.FindAsync(candidate.UserId);
                     candidate.Country = await _context.Country.FindAsync(candidate.CountryId);
-                    candidate.Other = await _context.Other.FindAsync(candidate.OtherId);
-                    candidate.Other.SalaryWish = await _context.SalaryWish.FindAsync(candidate.Other.SalaryWishId);
-                    candidate.Other.DrivingLicence = await _context.DrivingLicence.FindAsync(candidate.Other.DrivingLicenceId);
+                    candidate.SalaryWish = await _context.SalaryWish.FindAsync(candidate.SalaryWishId);
+                    candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(candidate.DrivingLicenceId);
                     return candidate;
                 
             }

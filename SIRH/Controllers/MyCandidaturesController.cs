@@ -33,9 +33,8 @@ namespace SIRH.Controllers
                         ca.Status = await _context.Status.FindAsync(ca.StatusId);
                         ca.Candidate.User = await _context.User.FindAsync(ca.Candidate.UserId);
                         ca.Candidate.Country = await _context.Country.FindAsync(ca.Candidate.CountryId);
-                        ca.Candidate.Other = await _context.Other.FindAsync(ca.Candidate.OtherId);
-                        ca.Candidate.Other.SalaryWish = await _context.SalaryWish.FindAsync(ca.Candidate.Other.SalaryWishId);
-                        ca.Candidate.Other.DrivingLicence = await _context.DrivingLicence.FindAsync(ca.Candidate.Other.DrivingLicenceId);
+                        ca.Candidate.SalaryWish = await _context.SalaryWish.FindAsync(ca.Candidate.SalaryWishId);
+                        ca.Candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(ca.Candidate.DrivingLicenceId);
                         ca.JobOffer = await _context.JobOffer.FindAsync(ca.JobOfferId);
                         ca.JobOffer.Country = await _context.Country.FindAsync(ca.JobOffer.CountryId);
                         ca.JobOffer.Diploma = await _context.Diploma.FindAsync(ca.JobOffer.DiplomaId);

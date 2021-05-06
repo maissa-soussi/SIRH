@@ -32,9 +32,8 @@ namespace SIRH.Controllers
                 ca.Status = await _context.Status.FindAsync(ca.StatusId);
                 ca.Candidate.User = await _context.User.FindAsync(ca.Candidate.UserId);
                 ca.Candidate.Country = await _context.Country.FindAsync(ca.Candidate.CountryId);
-                ca.Candidate.Other = await _context.Other.FindAsync(ca.Candidate.OtherId);
-                ca.Candidate.Other.SalaryWish = await _context.SalaryWish.FindAsync(ca.Candidate.Other.SalaryWishId);
-                ca.Candidate.Other.DrivingLicence = await _context.DrivingLicence.FindAsync(ca.Candidate.Other.DrivingLicenceId);
+                ca.Candidate.SalaryWish = await _context.SalaryWish.FindAsync(ca.Candidate.SalaryWishId);
+                ca.Candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(ca.Candidate.DrivingLicenceId);
             }
             return candidatures;
            
@@ -49,9 +48,8 @@ namespace SIRH.Controllers
             candidature.Status = await _context.Status.FindAsync(candidature.StatusId);
             candidature.Candidate.User = await _context.User.FindAsync(candidature.Candidate.UserId);
             candidature.Candidate.Country = await _context.Country.FindAsync(candidature.Candidate.CountryId);
-            candidature.Candidate.Other = await _context.Other.FindAsync(candidature.Candidate.OtherId);
-            candidature.Candidate.Other.SalaryWish = await _context.SalaryWish.FindAsync(candidature.Candidate.Other.SalaryWishId);
-            candidature.Candidate.Other.DrivingLicence = await _context.DrivingLicence.FindAsync(candidature.Candidate.Other.DrivingLicenceId);
+            candidature.Candidate.SalaryWish = await _context.SalaryWish.FindAsync(candidature.Candidate.SalaryWishId);
+            candidature.Candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(candidature.Candidate.DrivingLicenceId);
            
 
             if (candidature == null)
@@ -72,9 +70,6 @@ namespace SIRH.Controllers
             {
                 return BadRequest();
             }
-            if (candidatureSpont.JobInterviewDate != null)
-                candidatureSpont.StatusId = 2;
-            else candidatureSpont.StatusId = 1;
             _context.Entry(candidatureSpont).State = EntityState.Modified;
 
             try
@@ -101,11 +96,7 @@ namespace SIRH.Controllers
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<CandidatureSpont>> PostCandidatureSpont(CandidatureSpont candidatureSpont)
-        {
-            if (candidatureSpont.JobInterviewDate == null)
-                candidatureSpont.StatusId = 1;
-            else candidatureSpont.StatusId = 2;
-
+        {           
             _context.CandidatureSpont.Add(candidatureSpont);
             await _context.SaveChangesAsync();
 

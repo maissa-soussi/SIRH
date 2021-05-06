@@ -26,7 +26,6 @@ namespace SIRH.Controllers
             Candidate Candidate = await _context.Candidate.FindAsync(id);
             CandidateDTO CandidateDTO = new CandidateDTO();
             List<CandidateExperience> candidateExperiences = await _context.CandidateExperience.ToListAsync();
-            List<Other> others = await _context.Other.ToListAsync();
             List<CandidateLanguage> candidateLanguages = await _context.CandidateLanguage.ToListAsync();
             List<CandidateLanguageDTO> languages = new List<CandidateLanguageDTO>();
 
@@ -35,14 +34,8 @@ namespace SIRH.Controllers
                 if (ca.CandidateId == id)
                     CandidateDTO.ExperienceId = ca.ExperienceId;
             }
-            foreach (Other o in others)
-            {
-                if (o.Id == Candidate.OtherId)
-                {
-                    CandidateDTO.DrivingLicenceId = o.DrivingLicenceId;
-                    CandidateDTO.SalaryWishId = o.SalaryWishId;
-                }
-            }
+            CandidateDTO.DrivingLicenceId = Candidate.DrivingLicenceId;
+            CandidateDTO.SalaryWishId = Candidate.SalaryWishId;
             foreach (CandidateLanguage cl in candidateLanguages)
             {
                 if (cl.CandidateId == id)

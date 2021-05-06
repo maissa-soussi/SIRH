@@ -47,9 +47,8 @@ namespace SIRH.Controllers
                 element.Candidate = await _context.Candidate.FindAsync(element.CandidateId);
                 element.Candidate.User = await _context.User.FindAsync(element.Candidate.UserId);
                 element.Candidate.Country = await _context.Country.FindAsync(element.Candidate.CountryId);
-                element.Candidate.Other = await _context.Other.FindAsync(element.Candidate.OtherId);
-                element.Candidate.Other.SalaryWish = await _context.SalaryWish.FindAsync(element.Candidate.Other.SalaryWishId);
-                element.Candidate.Other.DrivingLicence = await _context.DrivingLicence.FindAsync(element.Candidate.Other.DrivingLicenceId);
+                element.Candidate.SalaryWish = await _context.SalaryWish.FindAsync(element.Candidate.SalaryWishId);
+                element.Candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(element.Candidate.DrivingLicenceId);
 
             }
             return listes;
@@ -72,9 +71,8 @@ namespace SIRH.Controllers
             candidateDiploma.Candidate = await _context.Candidate.FindAsync(candidateDiploma.CandidateId);
             candidateDiploma.Candidate.User = await _context.User.FindAsync(candidateDiploma.Candidate.UserId);
             candidateDiploma.Candidate.Country = await _context.Country.FindAsync(candidateDiploma.Candidate.CountryId);
-            candidateDiploma.Candidate.Other = await _context.Other.FindAsync(candidateDiploma.Candidate.OtherId);
-            candidateDiploma.Candidate.Other.SalaryWish = await _context.SalaryWish.FindAsync(candidateDiploma.Candidate.Other.SalaryWishId);
-            candidateDiploma.Candidate.Other.DrivingLicence = await _context.DrivingLicence.FindAsync(candidateDiploma.Candidate.Other.DrivingLicenceId);
+            candidateDiploma.Candidate.SalaryWish = await _context.SalaryWish.FindAsync(candidateDiploma.Candidate.SalaryWishId);
+            candidateDiploma.Candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(candidateDiploma.Candidate.DrivingLicenceId);
 
             return candidateDiploma;
         }
@@ -123,9 +121,8 @@ namespace SIRH.Controllers
             candidateDiploma.Candidate = await _context.Candidate.FindAsync(candidateDiploma.CandidateId);
             candidateDiploma.Candidate.User = await _context.User.FindAsync(candidateDiploma.Candidate.UserId);
             candidateDiploma.Candidate.Country = await _context.Country.FindAsync(candidateDiploma.Candidate.CountryId);
-            candidateDiploma.Candidate.Other = await _context.Other.FindAsync(candidateDiploma.Candidate.OtherId);
-            candidateDiploma.Candidate.Other.SalaryWish = await _context.SalaryWish.FindAsync(candidateDiploma.Candidate.Other.SalaryWishId);
-            candidateDiploma.Candidate.Other.DrivingLicence = await _context.DrivingLicence.FindAsync(candidateDiploma.Candidate.Other.DrivingLicenceId);
+            candidateDiploma.Candidate.SalaryWish = await _context.SalaryWish.FindAsync(candidateDiploma.Candidate.SalaryWishId);
+            candidateDiploma.Candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(candidateDiploma.Candidate.DrivingLicenceId);
 
             _context.CandidateDiploma.Add(candidateDiploma);
             await _context.SaveChangesAsync();

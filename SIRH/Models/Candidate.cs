@@ -54,10 +54,21 @@ namespace SIRH.Models
         public int? CountryId { get; set; }
         public virtual Country Country { get; set; }
 
+        [Url]
+        public string FacebookUrl { get; set; }
+
+        [Url]
+        public string LinkedinUrl { get; set; }
+
         [Required]
-        [ForeignKey("Other")]
-        public int? OtherId { get; set; }
-        public virtual Other Other { get; set; }
+        [ForeignKey("SalaryWish")]
+        public int SalaryWishId { get; set; }
+        public virtual SalaryWish SalaryWish { get; set; }
+
+        [Required]
+        [ForeignKey("DrivingLicence")]
+        public int DrivingLicenceId { get; set; }
+        public virtual DrivingLicence DrivingLicence { get; set; }
 
     }
 }

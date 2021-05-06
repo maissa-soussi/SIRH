@@ -34,9 +34,8 @@ namespace SIRH.Controllers
                 ce.Candidate = await _context.Candidate.FindAsync(ce.CandidateId);
                 ce.Candidate.User = await _context.User.FindAsync(ce.Candidate.UserId);
                 ce.Candidate.Country = await _context.Country.FindAsync(ce.Candidate.CountryId);
-                ce.Candidate.Other = await _context.Other.FindAsync(ce.Candidate.OtherId);
-                ce.Candidate.Other.SalaryWish = await _context.SalaryWish.FindAsync(ce.Candidate.Other.SalaryWishId);
-                ce.Candidate.Other.DrivingLicence = await _context.DrivingLicence.FindAsync(ce.Candidate.Other.DrivingLicenceId);
+                ce.Candidate.SalaryWish = await _context.SalaryWish.FindAsync(ce.Candidate.SalaryWishId);
+                ce.Candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(ce.Candidate.DrivingLicenceId);
             }
             return candidateExperiences;
         }
@@ -51,9 +50,8 @@ namespace SIRH.Controllers
             candidateExperience.Candidate = await _context.Candidate.FindAsync(candidateExperience.CandidateId);
             candidateExperience.Candidate.User = await _context.User.FindAsync(candidateExperience.Candidate.UserId);
             candidateExperience.Candidate.Country = await _context.Country.FindAsync(candidateExperience.Candidate.CountryId);
-            candidateExperience.Candidate.Other = await _context.Other.FindAsync(candidateExperience.Candidate.OtherId);
-            candidateExperience.Candidate.Other.SalaryWish = await _context.SalaryWish.FindAsync(candidateExperience.Candidate.Other.SalaryWishId);
-            candidateExperience.Candidate.Other.DrivingLicence = await _context.DrivingLicence.FindAsync(candidateExperience.Candidate.Other.DrivingLicenceId);
+            candidateExperience.Candidate.SalaryWish = await _context.SalaryWish.FindAsync(candidateExperience.Candidate.SalaryWishId);
+            candidateExperience.Candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(candidateExperience.Candidate.DrivingLicenceId);
 
             if (candidateExperience == null)
             {
@@ -106,9 +104,8 @@ namespace SIRH.Controllers
             candidateExperience.Candidate = await _context.Candidate.FindAsync(candidateExperience.CandidateId);
             candidateExperience.Candidate.User = await _context.User.FindAsync(candidateExperience.Candidate.UserId);
             candidateExperience.Candidate.Country = await _context.Country.FindAsync(candidateExperience.Candidate.CountryId);
-            candidateExperience.Candidate.Other = await _context.Other.FindAsync(candidateExperience.Candidate.OtherId);
-            candidateExperience.Candidate.Other.SalaryWish = await _context.SalaryWish.FindAsync(candidateExperience.Candidate.Other.SalaryWishId);
-            candidateExperience.Candidate.Other.DrivingLicence = await _context.DrivingLicence.FindAsync(candidateExperience.Candidate.Other.DrivingLicenceId);
+            candidateExperience.Candidate.SalaryWish = await _context.SalaryWish.FindAsync(candidateExperience.Candidate.SalaryWishId);
+            candidateExperience.Candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(candidateExperience.Candidate.DrivingLicenceId);
             _context.CandidateExperience.Add(candidateExperience);
             await _context.SaveChangesAsync();
 

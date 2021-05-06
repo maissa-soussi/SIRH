@@ -44,22 +44,25 @@ namespace SIRH.Controllers
 
         // GET: api/CandidateLanguages/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<CandidateLanguage>> GetCandidateLanguage(int id)
+        public async Task<ActionResult<IEnumerable<CandidateLanguage>>> GetCandidateLanguage(int id)
         {
-            var candidateLanguage = await _context.CandidateLanguage.FindAsync(id);
-            candidateLanguage.Candidate = await _context.Candidate.FindAsync(candidateLanguage.CandidateId);
-            candidateLanguage.Candidate.User = await _context.User.FindAsync(candidateLanguage.Candidate.UserId);
-            candidateLanguage.Candidate.Country = await _context.Country.FindAsync(candidateLanguage.Candidate.CountryId);
-            candidateLanguage.Candidate.SalaryWish = await _context.SalaryWish.FindAsync(candidateLanguage.Candidate.SalaryWishId);
-            candidateLanguage.Candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(candidateLanguage.Candidate.DrivingLicenceId);
-            candidateLanguage.Language = await _context.Language.FindAsync(candidateLanguage.LanguageId);
-            candidateLanguage.LanguageLevel = await _context.LanguageLevel.FindAsync(candidateLanguage.LanguageLevelId);
-            if (candidateLanguage == null)
+            List<CandidateLanguage> candidateLanguages = await _context.CandidateLanguage.ToListAsync();
+            List<CandidateLanguage> listes = new List<CandidateLanguage>();
+            foreach (CandidateLanguage jo in candidateLanguages)
             {
-                return NotFound();
+                if (jo.CandidateId == id)
+                {
+                    jo.Candidate = await _context.Candidate.FindAsync(jo.CandidateId);
+                    jo.Candidate.User = await _context.User.FindAsync(jo.Candidate.UserId);
+                    jo.Candidate.Country = await _context.Country.FindAsync(jo.Candidate.CountryId);
+                    jo.Candidate.SalaryWish = await _context.SalaryWish.FindAsync(jo.Candidate.SalaryWishId);
+                    jo.Candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(jo.Candidate.DrivingLicenceId);
+                    jo.Language = await _context.Language.FindAsync(jo.LanguageId);
+                    jo.LanguageLevel = await _context.LanguageLevel.FindAsync(jo.LanguageLevelId);
+                    listes.Add(jo);
+                }                  
             }
-
-            return candidateLanguage;
+            return listes;
         }
 
         // PUT: api/CandidateLanguages/5

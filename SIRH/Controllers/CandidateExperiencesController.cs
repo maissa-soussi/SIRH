@@ -42,23 +42,25 @@ namespace SIRH.Controllers
 
         // GET: api/CandidateExperiences/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<CandidateExperience>> GetCandidateExperience(int id)
+        public async Task<ActionResult<IEnumerable<CandidateExperience>>> GetCandidateExperience(int id)
         {
-            var candidateExperience = await _context.CandidateExperience.FindAsync(id);
-            candidateExperience.Experience = await _context.Experience.FindAsync(candidateExperience.ExperienceId);
-            candidateExperience.Domain = await _context.Domain.FindAsync(candidateExperience.DomainId);
-            candidateExperience.Candidate = await _context.Candidate.FindAsync(candidateExperience.CandidateId);
-            candidateExperience.Candidate.User = await _context.User.FindAsync(candidateExperience.Candidate.UserId);
-            candidateExperience.Candidate.Country = await _context.Country.FindAsync(candidateExperience.Candidate.CountryId);
-            candidateExperience.Candidate.SalaryWish = await _context.SalaryWish.FindAsync(candidateExperience.Candidate.SalaryWishId);
-            candidateExperience.Candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(candidateExperience.Candidate.DrivingLicenceId);
-
-            if (candidateExperience == null)
+            List<CandidateExperience> candidateExperiences = await _context.CandidateExperience.ToListAsync();
+            List<CandidateExperience> listes = new List<CandidateExperience>();
+            foreach (CandidateExperience ce in candidateExperiences)
             {
-                return NotFound();
+                if (ce.CandidateId == id)
+                {
+                    ce.Experience = await _context.Experience.FindAsync(ce.ExperienceId);
+                    ce.Domain = await _context.Domain.FindAsync(ce.DomainId);
+                    ce.Candidate = await _context.Candidate.FindAsync(ce.CandidateId);
+                    ce.Candidate.User = await _context.User.FindAsync(ce.Candidate.UserId);
+                    ce.Candidate.Country = await _context.Country.FindAsync(ce.Candidate.CountryId);
+                    ce.Candidate.SalaryWish = await _context.SalaryWish.FindAsync(ce.Candidate.SalaryWishId);
+                    ce.Candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(ce.Candidate.DrivingLicenceId);
+                    listes.Add(ce);
+                }                 
             }
-
-            return candidateExperience;
+            return listes;
         }
 
         // PUT: api/CandidateExperiences/5

@@ -56,25 +56,28 @@ namespace SIRH.Controllers
 
         // GET: api/CandidateDiplomas/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<CandidateDiploma>> GetCandidateDiploma(int id)
+        public async Task<ActionResult<IEnumerable<CandidateDiploma>>> GetCandidateDiploma(int id)
         {
-            var candidateDiploma = await _context.CandidateDiploma.FindAsync(id);
-
-
-            if (candidateDiploma == null)
+            //var candidateDiploma = await _context.CandidateDiploma.FirstAsync(p => p.CandidateId == id);
+            List<CandidateDiploma> listes = await _context.CandidateDiploma.ToListAsync();
+            List<CandidateDiploma> CandidateDiplomas = new List<CandidateDiploma>();
+            foreach (CandidateDiploma element in listes)
             {
-                return NotFound();
-            }
-            candidateDiploma.Diploma = await _context.Diploma.FindAsync(candidateDiploma.DiplomaId);
-            candidateDiploma.EducationLevel = await _context.EducationLevel.FindAsync(candidateDiploma.EducationLevelId);
-            candidateDiploma.Domain = await _context.Domain.FindAsync(candidateDiploma.DomainId);
-            candidateDiploma.Candidate = await _context.Candidate.FindAsync(candidateDiploma.CandidateId);
-            candidateDiploma.Candidate.User = await _context.User.FindAsync(candidateDiploma.Candidate.UserId);
-            candidateDiploma.Candidate.Country = await _context.Country.FindAsync(candidateDiploma.Candidate.CountryId);
-            candidateDiploma.Candidate.SalaryWish = await _context.SalaryWish.FindAsync(candidateDiploma.Candidate.SalaryWishId);
-            candidateDiploma.Candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(candidateDiploma.Candidate.DrivingLicenceId);
+                if (element.CandidateId == id)
+                {
+                    element.Diploma = await _context.Diploma.FindAsync(element.DiplomaId);
+                    element.EducationLevel = await _context.EducationLevel.FindAsync(element.EducationLevelId);
+                    element.Domain = await _context.Domain.FindAsync(element.DomainId);
+                    element.Candidate = await _context.Candidate.FindAsync(element.CandidateId);
+                    element.Candidate.User = await _context.User.FindAsync(element.Candidate.UserId);
+                    element.Candidate.Country = await _context.Country.FindAsync(element.Candidate.CountryId);
+                    element.Candidate.SalaryWish = await _context.SalaryWish.FindAsync(element.Candidate.SalaryWishId);
+                    element.Candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(element.Candidate.DrivingLicenceId);
+                    CandidateDiplomas.Add(element);
+                }
 
-            return candidateDiploma;
+            }
+            return CandidateDiplomas;
         }
 
         // PUT: api/CandidateDiplomas/5

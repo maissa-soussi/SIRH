@@ -42,13 +42,7 @@ namespace SIRH.Controllers
                 ca.JobOffer.Experience = await _context.Experience.FindAsync(ca.JobOffer.ExperienceId);
                 ca.JobOffer.ContratType = await _context.ContratType.FindAsync(ca.JobOffer.ContratTypeId);
                 ca.JobOffer.Domain = await _context.Domain.FindAsync(ca.JobOffer.DomainId);
-                /*List<Experience> exp = new List<Experience>();
-                foreach (CandidateExperience element in listes)
-                {
-                    if (element.CandidateId == ca.CandidateId)
-                        exp.Add(element.Experience);
-                }
-                ca.Experiences = exp;*/
+              
             }
             return candidatures;
         }

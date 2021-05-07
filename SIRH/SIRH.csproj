@@ -17,5 +17,10 @@
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="StaticFiles\Images\" />
+	  <Folder Include="StaticFiles\Cvs\" />
+	</ItemGroup>
+
 
 </Project>

@@ -20,6 +20,7 @@
 	<ItemGroup>
 	  <Folder Include="StaticFiles\Images\" />
 	  <Folder Include="StaticFiles\Cvs\" />
+	  <Folder Include="StaticFiles\CoverLetter\" />
 	</ItemGroup>
 
 

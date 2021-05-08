@@ -44,10 +44,13 @@ namespace SIRH.Controllers
         public async Task<ActionResult<Candidate>> GetCandidate(int id)
         {
             var candidate = await _context.Candidate.FindAsync(id);
-            candidate.User = await _context.User.FindAsync(candidate.UserId);
-            candidate.Country = await _context.Country.FindAsync(candidate.CountryId);
-            candidate.SalaryWish = await _context.SalaryWish.FindAsync(candidate.SalaryWishId);
-            candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(candidate.DrivingLicenceId);
+            if (candidate != null)
+            {
+                candidate.User = await _context.User.FindAsync(candidate.UserId);
+                candidate.Country = await _context.Country.FindAsync(candidate.CountryId);
+                candidate.SalaryWish = await _context.SalaryWish.FindAsync(candidate.SalaryWishId);
+                candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(candidate.DrivingLicenceId);
+            }
 
             if (candidate == null)
             {

@@ -14,6 +14,7 @@ namespace SIRH.Controllers
         {
             try
             {
+               
                 var file = Request.Form.Files[0];
                 var folderName = Path.Combine("StaticFiles", "Cvs");
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);

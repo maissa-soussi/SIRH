@@ -367,3 +367,6 @@ FodyWeavers.xsd
 /SIRH/Migrations/20210422161103_intial.Designer.cs
 /SIRH/Migrations/20210430210419_intial.cs
 /SIRH/Migrations/20210430210419_intial.Designer.cs
+/SIRH/StaticFiles
+/SIRH/Migrations/20210508025847_intial.cs
+/SIRH/Migrations/20210508025847_intial.Designer.cs

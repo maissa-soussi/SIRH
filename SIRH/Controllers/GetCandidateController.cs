@@ -36,7 +36,7 @@ namespace SIRH.Controllers
             }
             catch (InvalidOperationException)
             {
-                return null;
+                return c;
             }
                 
             

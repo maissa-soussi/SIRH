@@ -34,6 +34,7 @@ namespace SIRH.Controllers
                     CandidateIDs.Add(cd.CandidateId);
             }
             EducationLevelDTO.CandidateIDs = CandidateIDs;
+
             return EducationLevelDTO;
         }
     }

@@ -33,5 +33,40 @@ namespace SIRH.Controllers
 
             return stat;
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Stat>> GetStat(int id)
+        {
+            Stat stat = new Stat();
+            stat.Candidats = 0;
+            stat.Offres = 0;
+            var candidat = await _context.Candidate.FindAsync(id);
+
+            if (candidat == null)
+            {
+                stat.Candidatures = 0;
+                stat.CandidatureSponts = 0;
+            }
+            else
+            {
+                List<Candidature> candidatures = await _context.Candidature.ToListAsync();
+                List<CandidatureSpont> candidatureSponts = await _context.CandidatureSpont.ToListAsync();
+                var nbcandidatures = 0;
+                var nbcandidaturesponts = 0;
+                foreach (Candidature ca in candidatures) {
+                    if (ca.CandidateId == id)
+                        nbcandidatures++;
+                        }
+                foreach (CandidatureSpont cp in candidatureSponts)
+                {
+                    if (cp.CandidateId == id)
+                        nbcandidaturesponts++;
+                }
+                stat.Candidatures = nbcandidatures;
+                stat.CandidatureSponts = nbcandidaturesponts;
+            }
+
+            return stat;
+        }
     }
 }

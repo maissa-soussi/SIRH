@@ -42,11 +42,15 @@ namespace SIRH.Controllers
         public async Task<ActionResult<JobOffer>> GetJobOffer(int id)
         {
             var jobOffer = await _context.JobOffer.FindAsync(id);
-            jobOffer.Country = await _context.Country.FindAsync(jobOffer.CountryId);
-            jobOffer.Diploma = await _context.Diploma.FindAsync(jobOffer.DiplomaId);
-            jobOffer.Experience = await _context.Experience.FindAsync(jobOffer.ExperienceId);
-            jobOffer.ContratType = await _context.ContratType.FindAsync(jobOffer.ContratTypeId);
-            jobOffer.Domain = await _context.Domain.FindAsync(jobOffer.DomainId);
+            if (jobOffer != null)
+            {
+                jobOffer.Country = await _context.Country.FindAsync(jobOffer.CountryId);
+                jobOffer.Diploma = await _context.Diploma.FindAsync(jobOffer.DiplomaId);
+                jobOffer.Experience = await _context.Experience.FindAsync(jobOffer.ExperienceId);
+                jobOffer.ContratType = await _context.ContratType.FindAsync(jobOffer.ContratTypeId);
+                jobOffer.Domain = await _context.Domain.FindAsync(jobOffer.DomainId);
+            }
+               
 
             if (jobOffer == null)
             {

@@ -44,13 +44,16 @@ namespace SIRH.Controllers
         public async Task<ActionResult<CandidatureSpont>> GetCandidatureSpont(int id)
         {
             var candidature = await _context.CandidatureSpont.FindAsync(id);
-            candidature.Candidate = await _context.Candidate.FindAsync(candidature.CandidateId);
-            candidature.Status = await _context.Status.FindAsync(candidature.StatusId);
-            candidature.Candidate.User = await _context.User.FindAsync(candidature.Candidate.UserId);
-            candidature.Candidate.Country = await _context.Country.FindAsync(candidature.Candidate.CountryId);
-            candidature.Candidate.SalaryWish = await _context.SalaryWish.FindAsync(candidature.Candidate.SalaryWishId);
-            candidature.Candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(candidature.Candidate.DrivingLicenceId);
-           
+            if (candidature != null)
+            {
+                candidature.Candidate = await _context.Candidate.FindAsync(candidature.CandidateId);
+                candidature.Status = await _context.Status.FindAsync(candidature.StatusId);
+                candidature.Candidate.User = await _context.User.FindAsync(candidature.Candidate.UserId);
+                candidature.Candidate.Country = await _context.Country.FindAsync(candidature.Candidate.CountryId);
+                candidature.Candidate.SalaryWish = await _context.SalaryWish.FindAsync(candidature.Candidate.SalaryWishId);
+                candidature.Candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(candidature.Candidate.DrivingLicenceId);
+
+            }
 
             if (candidature == null)
             {

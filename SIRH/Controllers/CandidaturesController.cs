@@ -51,19 +51,23 @@ namespace SIRH.Controllers
         public async Task<ActionResult<Candidature>> GetCandidature(int id)
         {
             var candidature = await _context.Candidature.FindAsync(id);
-            candidature.Candidate = await _context.Candidate.FindAsync(candidature.CandidateId);
-            candidature.Status = await _context.Status.FindAsync(candidature.StatusId);
-            candidature.Candidate.User = await _context.User.FindAsync(candidature.Candidate.UserId);
-            candidature.Candidate.Country = await _context.Country.FindAsync(candidature.Candidate.CountryId);
-            candidature.Candidate.SalaryWish = await _context.SalaryWish.FindAsync(candidature.Candidate.SalaryWishId);
-            candidature.Candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(candidature.Candidate.DrivingLicenceId);
-            candidature.JobOffer = await _context.JobOffer.FindAsync(candidature.JobOfferId);
-            candidature.JobOffer.Country = await _context.Country.FindAsync(candidature.JobOffer.CountryId);
-            candidature.JobOffer.Diploma = await _context.Diploma.FindAsync(candidature.JobOffer.DiplomaId);
-            candidature.JobOffer.Experience = await _context.Experience.FindAsync(candidature.JobOffer.ExperienceId);
-            candidature.JobOffer.ContratType = await _context.ContratType.FindAsync(candidature.JobOffer.ContratTypeId);
-            candidature.JobOffer.Domain = await _context.Domain.FindAsync(candidature.JobOffer.DomainId);
+            if (candidature != null)
+            {
+                candidature.Candidate = await _context.Candidate.FindAsync(candidature.CandidateId);
+                candidature.Status = await _context.Status.FindAsync(candidature.StatusId);
+                candidature.Candidate.User = await _context.User.FindAsync(candidature.Candidate.UserId);
+                candidature.Candidate.Country = await _context.Country.FindAsync(candidature.Candidate.CountryId);
+                candidature.Candidate.SalaryWish = await _context.SalaryWish.FindAsync(candidature.Candidate.SalaryWishId);
+                candidature.Candidate.DrivingLicence = await _context.DrivingLicence.FindAsync(candidature.Candidate.DrivingLicenceId);
+                candidature.JobOffer = await _context.JobOffer.FindAsync(candidature.JobOfferId);
+                candidature.JobOffer.Country = await _context.Country.FindAsync(candidature.JobOffer.CountryId);
+                candidature.JobOffer.Diploma = await _context.Diploma.FindAsync(candidature.JobOffer.DiplomaId);
+                candidature.JobOffer.Experience = await _context.Experience.FindAsync(candidature.JobOffer.ExperienceId);
+                candidature.JobOffer.ContratType = await _context.ContratType.FindAsync(candidature.JobOffer.ContratTypeId);
+                candidature.JobOffer.Domain = await _context.Domain.FindAsync(candidature.JobOffer.DomainId);
 
+            }
+ 
             if (candidature == null)
             {
                 return NotFound();

@@ -21,19 +21,6 @@ namespace SIRH.Controllers
             _context = context;
         }
 
-        public async Task<List<Diploma>> GetAllByIdAsync(int idCandidate)
-        {
-            List<CandidateDiploma> listes = await _context.CandidateDiploma.ToListAsync();
-            List<Diploma> dip=new List<Diploma>();
-            foreach (CandidateDiploma element in listes)
-                {
-                if (element.CandidateId == idCandidate)
-                    dip.Add(element.Diploma);
-
-            }
-            return dip;
-
-        }
         // GET: api/CandidateDiplomas
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CandidateDiploma>>> GetCandidateDiploma()
@@ -41,7 +28,6 @@ namespace SIRH.Controllers
             List<CandidateDiploma> listes = await _context.CandidateDiploma.ToListAsync();
             foreach (CandidateDiploma element in listes)
             {
-                element.Diploma = await _context.Diploma.FindAsync(element.DiplomaId);
                 element.EducationLevel = await _context.EducationLevel.FindAsync(element.EducationLevelId);
                 element.Domain = await _context.Domain.FindAsync(element.DomainId);
                 element.Candidate = await _context.Candidate.FindAsync(element.CandidateId);
@@ -65,7 +51,6 @@ namespace SIRH.Controllers
             {
                 if (element.CandidateId == id)
                 {
-                    element.Diploma = await _context.Diploma.FindAsync(element.DiplomaId);
                     element.EducationLevel = await _context.EducationLevel.FindAsync(element.EducationLevelId);
                     element.Domain = await _context.Domain.FindAsync(element.DomainId);
                     element.Candidate = await _context.Candidate.FindAsync(element.CandidateId);
@@ -118,7 +103,6 @@ namespace SIRH.Controllers
         [HttpPost]
         public async Task<ActionResult<CandidateDiploma>> PostCandidateDiploma(CandidateDiploma candidateDiploma)
         {
-            candidateDiploma.Diploma = await _context.Diploma.FindAsync(candidateDiploma.DiplomaId);
             candidateDiploma.EducationLevel = await _context.EducationLevel.FindAsync(candidateDiploma.EducationLevelId);
             candidateDiploma.Domain = await _context.Domain.FindAsync(candidateDiploma.DomainId);
             candidateDiploma.Candidate = await _context.Candidate.FindAsync(candidateDiploma.CandidateId);

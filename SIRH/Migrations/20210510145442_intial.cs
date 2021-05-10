@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SIRH.Migrations
 {
-    public partial class Mig : Migration
+    public partial class intial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -283,7 +283,7 @@ namespace SIRH.Migrations
                     University = table.Column<string>(maxLength: 50, nullable: false),
                     CandidateId = table.Column<int>(nullable: false),
                     DomainId = table.Column<int>(nullable: false),
-                    DiplomaId = table.Column<int>(nullable: false),
+                    Diploma = table.Column<string>(nullable: false),
                     EducationLevelId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -293,12 +293,6 @@ namespace SIRH.Migrations
                         name: "FK_CandidateDiploma_Candidate_CandidateId",
                         column: x => x.CandidateId,
                         principalTable: "Candidate",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CandidateDiploma_Diploma_DiplomaId",
-                        column: x => x.DiplomaId,
-                        principalTable: "Diploma",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -474,11 +468,6 @@ namespace SIRH.Migrations
                 name: "IX_CandidateDiploma_CandidateId",
                 table: "CandidateDiploma",
                 column: "CandidateId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CandidateDiploma_DiplomaId",
-                table: "CandidateDiploma",
-                column: "DiplomaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CandidateDiploma_DomainId",

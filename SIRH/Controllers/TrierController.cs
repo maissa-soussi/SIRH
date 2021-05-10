@@ -12,10 +12,10 @@ namespace SIRH.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TriController : ControllerBase
+    public class TrierController : ControllerBase
     {
         private readonly SIRHContext _context;
-        public TriController(SIRHContext context)
+        public TrierController(SIRHContext context)
         {
             _context = context;
         }

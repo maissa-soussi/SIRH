@@ -24,7 +24,9 @@ namespace SIRH.Models
 		public int? DomainId { get; set; }
 		public virtual Domain Domain { get; set; }
 		[Required]
-		public string Diploma { get; set; }
+		[ForeignKey("Diploma")]
+		public int? DiplomaId { get; set; }
+		public virtual Diploma Diploma { get; set; }
 		[Required]
 		[ForeignKey("EducationLevel")]
 		public int? EducationLevelId { get; set; }

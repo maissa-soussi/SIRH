@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SIRH.Migrations
 {
-    public partial class intial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -283,7 +283,7 @@ namespace SIRH.Migrations
                     University = table.Column<string>(maxLength: 50, nullable: false),
                     CandidateId = table.Column<int>(nullable: false),
                     DomainId = table.Column<int>(nullable: false),
-                    Diploma = table.Column<string>(nullable: false),
+                    DiplomaId = table.Column<int>(nullable: false),
                     EducationLevelId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -293,6 +293,12 @@ namespace SIRH.Migrations
                         name: "FK_CandidateDiploma_Candidate_CandidateId",
                         column: x => x.CandidateId,
                         principalTable: "Candidate",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CandidateDiploma_Diploma_DiplomaId",
+                        column: x => x.DiplomaId,
+                        principalTable: "Diploma",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -470,6 +476,11 @@ namespace SIRH.Migrations
                 column: "CandidateId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CandidateDiploma_DiplomaId",
+                table: "CandidateDiploma",
+                column: "DiplomaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CandidateDiploma_DomainId",
                 table: "CandidateDiploma",
                 column: "DomainId");
@@ -535,6 +546,48 @@ namespace SIRH.Migrations
                 column: "StatusId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ContratType_Name",
+                table: "ContratType",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Country_Name",
+                table: "Country",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Diploma_Name",
+                table: "Diploma",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Domain_Name",
+                table: "Domain",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DrivingLicence_Type",
+                table: "DrivingLicence",
+                column: "Type",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EducationLevel_Name",
+                table: "EducationLevel",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Experience_Name",
+                table: "Experience",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_JobOffer_ContratTypeId",
                 table: "JobOffer",
                 column: "ContratTypeId");
@@ -563,6 +616,30 @@ namespace SIRH.Migrations
                 name: "IX_JobOffer_Reference",
                 table: "JobOffer",
                 column: "Reference",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Language_Name",
+                table: "Language",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LanguageLevel_Name",
+                table: "LanguageLevel",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SalaryWish_Salary",
+                table: "SalaryWish",
+                column: "Salary",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Status_Name",
+                table: "Status",
+                column: "Name",
                 unique: true);
 
             migrationBuilder.CreateIndex(

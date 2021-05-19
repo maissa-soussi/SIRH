@@ -111,9 +111,9 @@ namespace SIRH.Migrations
                         .HasColumnType("nvarchar(10)")
                         .HasMaxLength(10);
 
-                    b.Property<string>("Diploma")
+                    b.Property<int?>("DiplomaId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("int");
 
                     b.Property<int?>("DomainId")
                         .IsRequired()
@@ -131,6 +131,8 @@ namespace SIRH.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CandidateId");
+
+                    b.HasIndex("DiplomaId");
 
                     b.HasIndex("DomainId");
 
@@ -312,6 +314,9 @@ namespace SIRH.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("ContratType");
                 });
 
@@ -328,6 +333,9 @@ namespace SIRH.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Country");
                 });
@@ -346,6 +354,9 @@ namespace SIRH.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("Diploma");
                 });
 
@@ -362,6 +373,9 @@ namespace SIRH.Migrations
                         .HasMaxLength(100);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Domain");
                 });
@@ -380,6 +394,9 @@ namespace SIRH.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Type")
+                        .IsUnique();
+
                     b.ToTable("DrivingLicence");
                 });
 
@@ -397,6 +414,9 @@ namespace SIRH.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("EducationLevel");
                 });
 
@@ -413,6 +433,9 @@ namespace SIRH.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Experience");
                 });
@@ -502,6 +525,9 @@ namespace SIRH.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("Language");
                 });
 
@@ -518,6 +544,9 @@ namespace SIRH.Migrations
                         .HasMaxLength(100);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("LanguageLevel");
                 });
@@ -536,6 +565,9 @@ namespace SIRH.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Salary")
+                        .IsUnique();
+
                     b.ToTable("SalaryWish");
                 });
 
@@ -552,6 +584,9 @@ namespace SIRH.Migrations
                         .HasMaxLength(100);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Status");
                 });
@@ -630,6 +665,12 @@ namespace SIRH.Migrations
                     b.HasOne("SIRH.Models.Candidate", "Candidate")
                         .WithMany()
                         .HasForeignKey("CandidateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SIRH.Models.Diploma", "Diploma")
+                        .WithMany()
+                        .HasForeignKey("DiplomaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -30,6 +30,7 @@ namespace SIRH.Controllers
             {
                 element.EducationLevel = await _context.EducationLevel.FindAsync(element.EducationLevelId);
                 element.Domain = await _context.Domain.FindAsync(element.DomainId);
+                element.Diploma = await _context.Diploma.FindAsync(element.DiplomaId);
                 element.Candidate = await _context.Candidate.FindAsync(element.CandidateId);
                 element.Candidate.User = await _context.User.FindAsync(element.Candidate.UserId);
                 element.Candidate.Country = await _context.Country.FindAsync(element.Candidate.CountryId);
@@ -53,6 +54,7 @@ namespace SIRH.Controllers
                 {
                     element.EducationLevel = await _context.EducationLevel.FindAsync(element.EducationLevelId);
                     element.Domain = await _context.Domain.FindAsync(element.DomainId);
+                    element.Diploma = await _context.Diploma.FindAsync(element.DiplomaId);
                     element.Candidate = await _context.Candidate.FindAsync(element.CandidateId);
                     element.Candidate.User = await _context.User.FindAsync(element.Candidate.UserId);
                     element.Candidate.Country = await _context.Country.FindAsync(element.Candidate.CountryId);
@@ -105,6 +107,7 @@ namespace SIRH.Controllers
         {
             candidateDiploma.EducationLevel = await _context.EducationLevel.FindAsync(candidateDiploma.EducationLevelId);
             candidateDiploma.Domain = await _context.Domain.FindAsync(candidateDiploma.DomainId);
+            candidateDiploma.Diploma = await _context.Diploma.FindAsync(candidateDiploma.DiplomaId);
             candidateDiploma.Candidate = await _context.Candidate.FindAsync(candidateDiploma.CandidateId);
             candidateDiploma.Candidate.User = await _context.User.FindAsync(candidateDiploma.Candidate.UserId);
             candidateDiploma.Candidate.Country = await _context.Country.FindAsync(candidateDiploma.Candidate.CountryId);

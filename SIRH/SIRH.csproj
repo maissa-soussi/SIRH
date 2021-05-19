@@ -18,10 +18,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="StaticFiles\Cvs\" />
 	  <Folder Include="StaticFiles\Images\" />
 	  <Folder Include="StaticFiles\Cvs\" />
-	  <Folder Include="StaticFiles\CoverLetter\" />
+	  <Folder Include="StaticFiles\CovverLetter\" />
 	</ItemGroup>
 
 

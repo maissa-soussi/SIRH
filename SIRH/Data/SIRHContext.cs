@@ -58,6 +58,39 @@ namespace SIRH.Data
             modelBuilder.Entity<JobOffer>()
                 .HasIndex(jo => new { jo.Reference })
                 .IsUnique(true);
+            modelBuilder.Entity<Language>()
+                .HasIndex(l => new { l.Name })
+                .IsUnique(true);
+            modelBuilder.Entity<LanguageLevel>()
+                .HasIndex(ll => new { ll.Name })
+                .IsUnique(true);
+            modelBuilder.Entity<Diploma>()
+                .HasIndex(d => new { d.Name })
+                .IsUnique(true);
+            modelBuilder.Entity<DrivingLicence>()
+                .HasIndex(dl => new { dl.Type })
+                .IsUnique(true);
+            modelBuilder.Entity<Country>()
+                .HasIndex(c => new { c.Name })
+                .IsUnique(true);
+            modelBuilder.Entity<Domain>()
+                .HasIndex(dom => new { dom.Name })
+                .IsUnique(true);
+            modelBuilder.Entity<EducationLevel>()
+                .HasIndex(el => new { el.Name })
+                .IsUnique(true);
+            modelBuilder.Entity<Experience>()
+                .HasIndex(ex => new { ex.Name })
+                .IsUnique(true);
+            modelBuilder.Entity<ContratType>()
+                .HasIndex(con => new { con.Name })
+                .IsUnique(true);
+            modelBuilder.Entity<SalaryWish>()
+                .HasIndex(s => new { s.Salary })
+                .IsUnique(true);
+            modelBuilder.Entity<Status>()
+                .HasIndex(st => new { st.Name })
+                .IsUnique(true);
         }
 
         public DbSet<SIRH.Models.CandidatureSpont> CandidatureSpont { get; set; }

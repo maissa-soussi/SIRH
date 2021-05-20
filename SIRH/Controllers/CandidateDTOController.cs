@@ -43,6 +43,10 @@ namespace SIRH.Controllers
                     CandidateLanguageDTO candidateLanguageDTO = new CandidateLanguageDTO();
                     candidateLanguageDTO.LanguageId = cl.LanguageId;
                     candidateLanguageDTO.LanguageLevelId = cl.LanguageLevelId;
+                    Language language = await _context.Language.FindAsync(candidateLanguageDTO.LanguageId);
+                    candidateLanguageDTO.Language = language.Name;
+                    LanguageLevel languageLevel = await _context.LanguageLevel.FindAsync(candidateLanguageDTO.LanguageLevelId);
+                    candidateLanguageDTO.LanguageLevel = languageLevel.Name;
                     languages.Add(candidateLanguageDTO);
                 }
             }            

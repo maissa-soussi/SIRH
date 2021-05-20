@@ -10,7 +10,7 @@ using SIRH.Data;
 namespace SIRH.Migrations
 {
     [DbContext(typeof(SIRHContext))]
-    [Migration("20210520111202_Initial")]
+    [Migration("20210520120612_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

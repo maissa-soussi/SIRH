@@ -47,7 +47,11 @@ namespace SIRH.Controllers
                 }
             }            
             SalaryWish salary = await _context.SalaryWish.FindAsync(CandidateDTO.SalaryWishId);
+            DrivingLicence permis = await _context.DrivingLicence.FindAsync(CandidateDTO.DrivingLicenceId);
+            Experience experience = await _context.Experience.FindAsync(CandidateDTO.ExperienceId);
             CandidateDTO.SalaryWish = salary.Salary;
+            CandidateDTO.DrivingLicence = permis.Type;
+            CandidateDTO.Experience = experience.Name;
             CandidateDTO.Languages = languages;
             return CandidateDTO;
         }

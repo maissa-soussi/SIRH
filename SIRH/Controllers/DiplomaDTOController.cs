@@ -12,30 +12,30 @@ namespace SIRH.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EducationLevelDTOController : ControllerBase
+    public class DiplomaDTOController : ControllerBase
     {
         private readonly SIRHContext _context;
 
-        public EducationLevelDTOController(SIRHContext context)
+        public DiplomaDTOController(SIRHContext context)
         {
             _context = context;
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<EducationLevelDTO>> GetEducationLevelDTO(int id)
+        public async Task<ActionResult<DiplomaDTO>> GetDiplomaDTO(int id)
         {
-            EducationLevel educationLevel = await _context.EducationLevel.FindAsync(id);
+            Diploma diploma = await _context.Diploma.FindAsync(id);
             List<int?> CandidateIDs = new List<int?>();
             List<CandidateDiploma> candidateDiplomas = await _context.CandidateDiploma.ToListAsync();
-            EducationLevelDTO EducationLevelDTO = new EducationLevelDTO();
-            EducationLevelDTO.EducationLevel = educationLevel;
+            DiplomaDTO DiplomaDTO = new DiplomaDTO();
+            DiplomaDTO.Diploma = diploma;
             foreach (CandidateDiploma cd in candidateDiplomas)
             {
-                if (cd.EducationLevelId == educationLevel.Id)
+                if (cd.DiplomaId == diploma.Id)
                     CandidateIDs.Add(cd.CandidateId);
             }
-            EducationLevelDTO.CandidateIDs = CandidateIDs;
+            DiplomaDTO.CandidateIDs = CandidateIDs;
 
-            return EducationLevelDTO;
+            return DiplomaDTO;
         }
     }
 }
